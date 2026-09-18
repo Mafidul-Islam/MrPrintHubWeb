@@ -3,29 +3,64 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>MR Print Hub — Smart QR-Based Printing Software for Shops & Cyber Cafes</title>
-<meta name="description" content="MR Print Hub is a Windows desktop application that lets customers send files to your printing shop via QR code over local Wi-Fi. No internet needed. No app required.">
-<meta name="keywords" content="printing software, cyber cafe, xerox shop, QR code printing, file transfer, Windows printing app, MR Print Hub">
-<meta property="og:title" content="MR Print Hub — Smart QR-Based Printing Software">
-<meta property="og:description" content="Turn your printing shop into a smarter digital print hub with QR-based file submission over local Wi-Fi.">
+<title>MR Print Hub — Send Files. Print Faster. | Smart Printing Software</title>
+<meta name="description" content="MR Print Hub lets customers send files directly to your printing shop using Local Wi-Fi or Mobile Internet. No apps, no accounts, instant print-ready workflow for Windows.">
+<meta name="keywords" content="printing software, cyber cafe, xerox shop, QR code printing, local wifi file transfer, mobile internet file sharing, Windows print hub, MR Print Hub">
+<meta property="og:title" content="MR Print Hub — Send Files. Print Faster.">
+<meta property="og:description" content="Send files directly to your printing shop using Local Wi-Fi or Mobile Internet. No app needed.">
 <meta property="og:image" content="https://i.postimg.cc/YCFyR8d8/Gemini-Generated-Image-ipd9ndipd9ndipd9.png">
 <meta property="og:type" content="website">
 <meta name="twitter:card" content="summary_large_image">
-<link rel="icon" type="image/png" href="logo.png">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon.png">
+<link rel="icon" type="image/webp" href="logo.webp">
+
+<!-- Google Fonts: Inter with font-display swap for zero render blocking -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
---primary:#1a56db;--accent:#06b6d4;--navy:#0f172a;--surface:#f8fafc;
---slate:#64748b;--success:#16a34a;--white:#ffffff;--gray-50:#f9fafb;
---gray-100:#f3f4f6;--gray-200:#e5e7eb;--gray-300:#d1d5db;--gray-800:#1e293b;
---gray-900:#111827;--gradient:linear-gradient(135deg,#1a56db,#06b6d4);
---shadow-sm:0 1px 2px rgba(0,0,0,.05);--shadow:0 4px 6px -1px rgba(0,0,0,.07),0 2px 4px -2px rgba(0,0,0,.05);
---shadow-lg:0 20px 40px -12px rgba(0,0,0,.12);--shadow-xl:0 25px 50px -12px rgba(0,0,0,.18);
---radius:12px;--radius-lg:20px;--transition:0.3s cubic-bezier(.4,0,.2,1);
+  --primary:#1a56db;
+  --primary-hover:#1447b8;
+  --accent:#06b6d4;
+  --accent-glow:rgba(6,182,212,.18);
+  --navy:#0b1329;
+  --navy-card:#111c38;
+  --navy-border:rgba(255,255,255,.08);
+  --surface:#f8fafc;
+  --surface-card:#ffffff;
+  --slate:#64748b;
+  --slate-dark:#334155;
+  --success:#10b981;
+  --success-bg:rgba(16,185,129,.1);
+  --wifi-color:#0284c7;
+  --wifi-bg:rgba(2,132,199,.08);
+  --data-color:#7c3aed;
+  --data-bg:rgba(124,58,237,.08);
+  --white:#ffffff;
+  --gray-50:#f9fafb;
+  --gray-100:#f1f5f9;
+  --gray-200:#e2e8f0;
+  --gray-300:#cbd5e1;
+  --gray-800:#1e293b;
+  --gray-900:#0f172a;
+  --gradient:linear-gradient(135deg,#1a56db,#06b6d4);
+  --gradient-hover:linear-gradient(135deg,#1646b5,#0891b2);
+  --gradient-wifi:linear-gradient(135deg,#0284c7,#06b6d4);
+  --gradient-data:linear-gradient(135deg,#7c3aed,#06b6d4);
+  --shadow-sm:0 1px 2px rgba(0,0,0,.04);
+  --shadow:0 4px 6px -1px rgba(0,0,0,.06),0 2px 4px -2px rgba(0,0,0,.04);
+  --shadow-md:0 10px 20px -3px rgba(0,0,0,.07),0 4px 6px -2px rgba(0,0,0,.04);
+  --shadow-lg:0 20px 35px -8px rgba(0,0,0,.1),0 8px 12px -4px rgba(0,0,0,.04);
+  --shadow-xl:0 25px 50px -12px rgba(0,0,0,.18);
+  --radius:12px;
+  --radius-lg:18px;
+  --radius-xl:24px;
+  --transition:0.25s cubic-bezier(.4,0,.2,1);
 }
+
 html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
 body{font-family:'Inter',system-ui,-apple-system,sans-serif;color:var(--gray-900);background:var(--white);line-height:1.6;overflow-x:hidden}
 img{max-width:100%;height:auto;display:block}
@@ -35,24 +70,25 @@ button{border:none;cursor:pointer;font-family:inherit}
 h1,h2,h3,h4,h5,h6{letter-spacing:-0.025em;line-height:1.2}
 
 /* --- ANIMATIONS --- */
-.fade-up{opacity:0;transform:translateY(30px);transition:opacity 0.7s var(--transition),transform 0.7s var(--transition)}
+.fade-up{opacity:0;transform:translateY(22px);transition:opacity 0.55s var(--transition),transform 0.55s var(--transition);will-change:opacity,transform}
 .fade-up.visible{opacity:1;transform:translateY(0)}
 @media(prefers-reduced-motion:reduce){
-.fade-up{opacity:1;transform:none;transition:none}
-.hero-mockup-desktop,.hero-mockup-mobile{animation:none!important}
-.flow-line,.flow-dot{animation:none!important}
+  .fade-up{opacity:1!important;transform:none!important;transition:none!important}
+  .hero-mockup-desktop,.hero-mockup-mobile,.pulse-badge{animation:none!important}
 }
 
+.cv-auto{content-visibility:auto;contain-intrinsic-size:1px 600px}
+
 /* --- NAVBAR --- */
-.navbar{position:fixed;top:0;left:0;width:100%;z-index:1000;background:rgba(255,255,255,.92);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom:1px solid rgba(0,0,0,.06);transition:box-shadow var(--transition)}
+.navbar{position:fixed;top:0;left:0;width:100%;z-index:1000;background:rgba(255,255,255,.94);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-bottom:1px solid rgba(0,0,0,.06);transition:box-shadow var(--transition)}
 .navbar.scrolled{box-shadow:0 1px 12px rgba(0,0,0,.08)}
 .nav-inner{display:flex;align-items:center;justify-content:space-between;height:72px;max-width:1200px;margin:0 auto;padding:0 24px}
 .nav-logo{display:flex;align-items:center;gap:10px;font-weight:700;font-size:1.1rem;color:var(--navy)}
-.nav-logo img{width:36px;height:36px;object-fit:contain}
-.nav-links{display:flex;align-items:center;gap:32px;list-style:none}
+.nav-logo img{width:36px;height:36px;aspect-ratio:1/1;object-fit:contain}
+.nav-links{display:flex;align-items:center;gap:28px;list-style:none}
 .nav-links a{font-size:.9rem;font-weight:500;color:var(--slate);transition:color var(--transition)}
 .nav-links a:hover{color:var(--primary)}
-.nav-cta{background:var(--gradient);color:#fff;padding:10px 24px;border-radius:100px;font-size:.9rem;font-weight:600;transition:transform var(--transition),box-shadow var(--transition)}
+.nav-cta{background:var(--gradient);color:#fff;padding:9px 22px;border-radius:100px;font-size:.88rem;font-weight:600;transition:transform var(--transition),box-shadow var(--transition)}
 .nav-cta:hover{transform:translateY(-1px);box-shadow:0 6px 20px rgba(26,86,219,.35)}
 .hamburger{display:none;flex-direction:column;gap:5px;background:none;padding:8px}
 .hamburger span{display:block;width:24px;height:2px;background:var(--navy);border-radius:2px;transition:var(--transition)}
@@ -60,220 +96,302 @@ h1,h2,h3,h4,h5,h6{letter-spacing:-0.025em;line-height:1.2}
 .mobile-menu.open{display:flex}
 .mobile-menu a{font-size:1rem;font-weight:500;color:var(--gray-800);padding:8px 0}
 
-@media(max-width:768px){
-.nav-links{display:none}
-.hamburger{display:flex}
+@media(max-width:900px){
+  .nav-links{display:none}
+  .hamburger{display:flex}
 }
 
-/* --- HERO --- */
-.hero{padding:140px 0 80px;background:linear-gradient(180deg,var(--surface) 0%,var(--white) 100%);overflow:hidden}
-.hero-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
-.hero-badge{display:inline-flex;align-items:center;gap:8px;background:linear-gradient(135deg,rgba(26,86,219,.08),rgba(6,182,212,.08));color:var(--primary);font-size:.75rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:8px 16px;border-radius:100px;border:1px solid rgba(26,86,219,.15);margin-bottom:20px}
-.hero-badge::before{content:'';width:8px;height:8px;background:var(--gradient);border-radius:50%}
-.hero h1{font-size:3.2rem;font-weight:800;color:var(--navy);margin-bottom:20px;letter-spacing:-0.035em;line-height:1.1}
+/* --- HERO SECTION --- */
+.hero{padding:130px 0 70px;background:radial-gradient(ellipse at 50% 0%,rgba(6,182,212,.08) 0%,var(--surface) 60%,var(--white) 100%);overflow:hidden}
+.hero-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:48px;align-items:center}
+.hero-badges{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:18px}
+.badge-pill{display:inline-flex;align-items:center;gap:6px;font-size:.75rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:6px 14px;border-radius:100px}
+.badge-blue{background:rgba(26,86,219,.08);color:var(--primary);border:1px solid rgba(26,86,219,.16)}
+.badge-cyan{background:rgba(6,182,212,.1);color:#0891b2;border:1px solid rgba(6,182,212,.2)}
+.badge-pulse{width:6px;height:6px;background:var(--success);border-radius:50%;animation:pulse 2s infinite}
+@keyframes pulse{0%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(1.3)}100%{opacity:1;transform:scale(1)}}
+
+.hero h1{font-size:3.3rem;font-weight:800;color:var(--navy);margin-bottom:18px;letter-spacing:-0.035em;line-height:1.12}
 .hero h1 span{background:var(--gradient);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
-.hero-desc{font-size:1.15rem;color:var(--slate);line-height:1.7;margin-bottom:36px;max-width:520px}
-.hero-buttons{display:flex;gap:16px;flex-wrap:wrap}
-.btn-primary{background:var(--gradient);color:#fff;padding:16px 32px;border-radius:100px;font-size:1rem;font-weight:600;display:inline-flex;align-items:center;gap:10px;transition:transform var(--transition),box-shadow var(--transition)}
-.btn-primary:hover{transform:translateY(-2px);box-shadow:0 8px 30px rgba(26,86,219,.3)}
-.btn-secondary{background:var(--white);color:var(--navy);padding:16px 32px;border-radius:100px;font-size:1rem;font-weight:600;border:1.5px solid var(--gray-200);display:inline-flex;align-items:center;gap:10px;transition:all var(--transition)}
+.hero-subhead{font-size:1.25rem;font-weight:600;color:var(--gray-800);margin-bottom:14px;line-height:1.4}
+.hero-desc{font-size:1.05rem;color:var(--slate);line-height:1.7;margin-bottom:28px;max-width:540px}
+
+.hero-dual-pills{display:flex;gap:12px;margin-bottom:28px;flex-wrap:wrap}
+.dual-pill{display:inline-flex;align-items:center;gap:8px;padding:8px 16px;border-radius:10px;font-size:.85rem;font-weight:600}
+.dual-pill.wifi{background:var(--wifi-bg);color:var(--wifi-color);border:1px solid rgba(2,132,199,.2)}
+.dual-pill.data{background:var(--data-bg);color:var(--data-color);border:1px solid rgba(124,58,237,.2)}
+
+.hero-buttons{display:flex;gap:14px;flex-wrap:wrap}
+.btn-primary{background:var(--gradient);color:#fff;padding:15px 30px;border-radius:100px;font-size:.98rem;font-weight:600;display:inline-flex;align-items:center;gap:10px;transition:transform var(--transition),box-shadow var(--transition)}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 8px 25px rgba(26,86,219,.35)}
+.btn-secondary{background:var(--white);color:var(--navy);padding:15px 28px;border-radius:100px;font-size:.98rem;font-weight:600;border:1.5px solid var(--gray-200);display:inline-flex;align-items:center;gap:10px;transition:all var(--transition)}
 .btn-secondary:hover{border-color:var(--primary);color:var(--primary);transform:translateY(-2px)}
-.hero-mockups{position:relative;height:480px}
-.hero-mockup-desktop{position:absolute;top:0;left:0;width:100%;border-radius:var(--radius-lg);box-shadow:var(--shadow-xl);animation:float-desktop 6s ease-in-out infinite}
-.hero-mockup-mobile{position:absolute;bottom:-20px;right:-20px;width:200px;border-radius:var(--radius-lg);box-shadow:var(--shadow-xl);border:4px solid var(--white);animation:float-mobile 5s ease-in-out infinite 1s}
-@keyframes float-desktop{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
-@keyframes float-mobile{0%,100%{transform:translateY(0) rotate(0deg)}50%{transform:translateY(-8px) rotate(1deg)}}
+
+/* Hero Visual with Dual Flow indicator */
+.hero-visual{position:relative;width:100%;max-width:540px;margin:0 auto}
+.hero-mockups{position:relative;width:100%;aspect-ratio:540/360}
+.hero-mockup-desktop{position:absolute;top:0;left:0;width:92%;aspect-ratio:2816/1536;border-radius:var(--radius-lg);box-shadow:var(--shadow-xl);animation:float-desktop 6s ease-in-out infinite;object-fit:cover}
+.hero-mockup-mobile{position:absolute;bottom:0;right:0;width:38%;aspect-ratio:2816/1536;border-radius:var(--radius-lg);box-shadow:var(--shadow-xl);border:3px solid var(--white);animation:float-mobile 5s ease-in-out infinite 1s;object-fit:cover}
+@keyframes float-desktop{0%,100%{transform:translateY(0)}50%{transform:translateY(-7px)}}
+@keyframes float-mobile{0%,100%{transform:translateY(0) rotate(0deg)}50%{transform:translateY(-5px) rotate(1deg)}}
+
+.hero-channel-badge{position:absolute;bottom:-14px;left:10px;background:rgba(255,255,255,.96);backdrop-filter:blur(10px);border:1px solid var(--gray-200);border-radius:100px;padding:8px 16px;display:flex;align-items:center;gap:10px;box-shadow:var(--shadow-lg);font-size:.8rem;font-weight:600;color:var(--navy)}
+.channel-dot{width:8px;height:8px;border-radius:50%}
+.channel-dot.wifi{background:var(--wifi-color)}
+.channel-dot.data{background:var(--data-color)}
 
 @media(max-width:968px){
-.hero-grid{grid-template-columns:1fr;text-align:center}
-.hero-desc{margin-left:auto;margin-right:auto}
-.hero-buttons{justify-content:center}
-.hero-mockups{height:360px;margin-top:20px}
-.hero h1{font-size:2.4rem}
+  .hero-grid{grid-template-columns:1fr;text-align:center}
+  .hero-badges,.hero-dual-pills,.hero-buttons{justify-content:center}
+  .hero-desc{margin-left:auto;margin-right:auto}
+  .hero-visual{max-width:460px;margin-top:20px}
+  .hero h1{font-size:2.5rem}
+  .hero-channel-badge{left:50%;transform:translateX(-50%)}
 }
-@media(max-width:480px){.hero h1{font-size:1.9rem}.hero-mockup-mobile{width:140px}}
+@media(max-width:480px){
+  .hero h1{font-size:2rem}
+  .hero-subhead{font-size:1.1rem}
+}
 
-/* --- HERO FLOW ANIMATION --- */
-.hero-flow{padding:80px 0;background:var(--white);overflow:hidden}
-.hero-flow h2{text-align:center;font-size:1rem;font-weight:600;color:var(--slate);text-transform:uppercase;letter-spacing:.1em;margin-bottom:48px}
-.flow-steps{display:flex;align-items:center;justify-content:center;gap:12px;flex-wrap:wrap;padding:20px 0}
-.flow-step{display:flex;flex-direction:column;align-items:center;gap:12px;padding:20px;min-width:120px}
-.flow-icon{width:64px;height:64px;border-radius:16px;display:flex;align-items:center;justify-content:center;font-size:28px;transition:transform var(--transition)}
-.flow-icon.blue{background:linear-gradient(135deg,rgba(26,86,219,.1),rgba(26,86,219,.05));color:var(--primary)}
-.flow-icon.cyan{background:linear-gradient(135deg,rgba(6,182,212,.1),rgba(6,182,212,.05));color:var(--accent)}
-.flow-icon.green{background:linear-gradient(135deg,rgba(22,163,74,.1),rgba(22,163,74,.05));color:var(--success)}
-.flow-step:hover .flow-icon{transform:scale(1.1)}
-.flow-label{font-size:.85rem;font-weight:600;color:var(--navy);text-align:center}
-.flow-arrow{color:var(--gray-300);font-size:24px;font-weight:300}
-@media(max-width:768px){.flow-steps{gap:8px}.flow-step{min-width:80px;padding:12px}.flow-icon{width:48px;height:48px;font-size:20px}.flow-label{font-size:.75rem}}
-
-/* --- TRUST BENEFITS --- */
-.trust{padding:80px 0;background:var(--surface)}
-.trust-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:24px}
-.trust-card{background:var(--white);border-radius:var(--radius);padding:32px 24px;text-align:center;border:1px solid var(--gray-100);transition:all var(--transition)}
-.trust-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg);border-color:rgba(26,86,219,.15)}
-.trust-card-icon{width:52px;height:52px;border-radius:14px;display:flex;align-items:center;justify-content:center;margin:0 auto 16px;font-size:24px}
-.trust-card h4{font-size:.95rem;font-weight:700;color:var(--navy);margin-bottom:6px}
-.trust-card p{font-size:.82rem;color:var(--slate);line-height:1.5}
-@media(max-width:968px){.trust-grid{grid-template-columns:repeat(3,1fr)}}
-@media(max-width:580px){.trust-grid{grid-template-columns:repeat(2,1fr)}}
+/* --- DUAL TRANSFER FLOW BANNER --- */
+.transfer-banner{padding:30px 0 50px;background:var(--white)}
+.flow-container{display:flex;align-items:center;justify-content:center;gap:16px;flex-wrap:wrap;background:var(--surface);padding:24px 32px;border-radius:var(--radius-xl);border:1px solid var(--gray-200)}
+.flow-node{display:flex;align-items:center;gap:10px;font-size:.9rem;font-weight:700;color:var(--navy)}
+.flow-icon-circle{width:42px;height:42px;border-radius:12px;display:flex;align-items:center;justify-content:center;color:#fff;font-size:18px}
+.flow-paths-box{display:flex;flex-direction:column;gap:8px}
+.flow-path-tag{display:inline-flex;align-items:center;gap:6px;padding:5px 12px;border-radius:100px;font-size:.78rem;font-weight:700}
+.flow-path-tag.tag-wifi{background:var(--wifi-bg);color:var(--wifi-color);border:1px solid rgba(2,132,199,.25)}
+.flow-path-tag.tag-data{background:var(--data-bg);color:var(--data-color);border:1px solid rgba(124,58,237,.25)}
+.flow-connector{color:var(--slate);font-size:20px;font-weight:300}
+@media(max-width:768px){
+  .flow-container{flex-direction:column;gap:14px;padding:20px}
+  .flow-connector{transform:rotate(90deg)}
+}
 
 /* --- SECTIONS SHARED --- */
-.section{padding:100px 0}
+.section{padding:90px 0}
 .section-dark{background:var(--navy);color:var(--white)}
 .section-gray{background:var(--surface)}
-.section-header{text-align:center;max-width:680px;margin:0 auto 60px}
-.section-header h2{font-size:2.4rem;font-weight:800;color:var(--navy);margin-bottom:16px}
+.section-header{text-align:center;max-width:720px;margin:0 auto 50px}
+.section-header h2{font-size:2.35rem;font-weight:800;color:var(--navy);margin-bottom:14px}
 .section-dark .section-header h2{color:var(--white)}
-.section-header p{font-size:1.1rem;color:var(--slate);line-height:1.7}
-.section-dark .section-header p{color:rgba(255,255,255,.6)}
-.section-label{font-size:.8rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--primary);margin-bottom:12px;display:block}
+.section-header p{font-size:1.08rem;color:var(--slate);line-height:1.7}
+.section-dark .section-header p{color:rgba(255,255,255,.65)}
+.section-label{font-size:.78rem;font-weight:700;text-transform:uppercase;letter-spacing:.12em;color:var(--primary);margin-bottom:10px;display:inline-block}
 .section-dark .section-label{color:var(--accent)}
 
-/* --- PROBLEM SOLUTION --- */
-.ps-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:start}
-.ps-card{padding:40px;border-radius:var(--radius-lg)}
-.ps-problem{background:linear-gradient(135deg,#fef2f2,#fff1f2);border:1px solid #fecaca}
-.ps-solution{background:linear-gradient(135deg,#f0fdf4,#ecfdf5);border:1px solid #bbf7d0}
-.ps-card h3{font-size:1.5rem;font-weight:700;margin-bottom:20px}
-.ps-problem h3{color:#b91c1c}
-.ps-solution h3{color:#15803d}
-.ps-list{list-style:none;display:flex;flex-direction:column;gap:14px}
-.ps-list li{display:flex;align-items:flex-start;gap:12px;font-size:.95rem;line-height:1.6}
-.ps-list li .icon{flex-shrink:0;width:24px;height:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;margin-top:2px}
-.ps-problem .icon{background:#fecaca;color:#b91c1c}
-.ps-solution .icon{background:#bbf7d0;color:#15803d}
-@media(max-width:768px){.ps-grid{grid-template-columns:1fr}.ps-card{padding:28px}}
+/* --- NEW FEATURE: SEND FILES. YOUR WAY --- */
+.dual-feature-grid{display:grid;grid-template-columns:1fr 1fr;gap:32px;margin-bottom:40px}
+.dual-card{background:var(--white);border-radius:var(--radius-xl);padding:36px;border:1.5px solid var(--gray-200);box-shadow:var(--shadow-sm);position:relative;overflow:hidden;transition:all var(--transition)}
+.dual-card:hover{transform:translateY(-5px);box-shadow:var(--shadow-lg)}
+.dual-card.card-wifi:hover{border-color:var(--wifi-color)}
+.dual-card.card-data:hover{border-color:var(--data-color)}
+.dual-card-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:20px}
+.dual-card-icon{width:56px;height:56px;border-radius:16px;display:flex;align-items:center;justify-content:center;color:#fff}
+.dual-card.card-wifi .dual-card-icon{background:var(--gradient-wifi)}
+.dual-card.card-data .dual-card-icon{background:var(--gradient-data)}
+.dual-card-badge{font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em;padding:6px 12px;border-radius:100px}
+.dual-card.card-wifi .dual-card-badge{background:var(--wifi-bg);color:var(--wifi-color)}
+.dual-card.card-data .dual-card-badge{background:var(--data-bg);color:var(--data-color)}
+.dual-card h3{font-size:1.45rem;font-weight:800;color:var(--navy);margin-bottom:10px}
+.dual-card p{font-size:.95rem;color:var(--slate);line-height:1.65;margin-bottom:22px}
+.dual-card-flow{background:var(--surface);border-radius:var(--radius);padding:14px 18px;border:1px solid var(--gray-200);font-size:.82rem;font-weight:600;color:var(--gray-800);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px}
+.dual-card-flow span{display:flex;align-items:center;gap:6px}
+
+.convergence-banner{background:linear-gradient(135deg,rgba(26,86,219,.04),rgba(6,182,212,.06));border:1.5px dashed rgba(26,86,219,.25);border-radius:var(--radius-lg);padding:24px 32px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:20px}
+.convergence-text h4{font-size:1.05rem;font-weight:700;color:var(--navy);margin-bottom:4px}
+.convergence-text p{font-size:.9rem;color:var(--slate)}
+.convergence-tag{background:var(--navy);color:#fff;padding:10px 20px;border-radius:100px;font-size:.85rem;font-weight:700;display:inline-flex;align-items:center;gap:8px}
+
+@media(max-width:768px){
+  .dual-feature-grid{grid-template-columns:1fr;gap:24px}
+  .dual-card{padding:28px}
+  .convergence-banner{flex-direction:column;text-align:center}
+}
 
 /* --- HOW IT WORKS --- */
-.steps-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:32px;counter-reset:step}
-.step-card{text-align:center;padding:36px 24px;position:relative}
-.step-number{width:56px;height:56px;border-radius:50%;background:var(--gradient);color:#fff;display:flex;align-items:center;justify-content:center;font-size:1.3rem;font-weight:800;margin:0 auto 20px;box-shadow:0 8px 24px rgba(26,86,219,.25)}
-.step-card h3{font-size:1.15rem;font-weight:700;color:var(--navy);margin-bottom:10px}
-.step-card p{font-size:.9rem;color:var(--slate);line-height:1.6}
-@media(max-width:768px){.steps-grid{grid-template-columns:repeat(2,1fr);gap:24px}}
+.steps-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;position:relative}
+.step-card{background:var(--white);border-radius:var(--radius-lg);padding:32px 24px;border:1px solid var(--gray-200);box-shadow:var(--shadow-sm);position:relative;transition:all var(--transition)}
+.step-card:hover{transform:translateY(-5px);box-shadow:var(--shadow-md);border-color:var(--primary)}
+.step-num{width:48px;height:48px;border-radius:50%;background:var(--gradient);color:#fff;display:flex;align-items:center;justify-content:center;font-size:1.15rem;font-weight:800;margin-bottom:20px;box-shadow:0 6px 18px rgba(26,86,219,.25)}
+.step-card h3{font-size:1.15rem;font-weight:700;color:var(--navy);margin-bottom:8px}
+.step-card p{font-size:.88rem;color:var(--slate);line-height:1.6}
+.step-tag{display:inline-block;margin-top:14px;font-size:.75rem;font-weight:700;color:var(--primary);background:rgba(26,86,219,.08);padding:4px 10px;border-radius:6px}
+
+@media(max-width:968px){.steps-grid{grid-template-columns:repeat(2,1fr);gap:20px}}
 @media(max-width:480px){.steps-grid{grid-template-columns:1fr}}
 
-/* --- VIDEO DEMO --- */
-.demo-video-wrap{max-width:900px;margin:0 auto;border-radius:var(--radius-lg);overflow:hidden;box-shadow:var(--shadow-xl);background:#000}
-.demo-video-wrap video{width:100%;display:block}
-.demo-screenshots{display:grid;grid-template-columns:1fr 1fr;gap:32px;margin-top:48px;align-items:center}
-.demo-screenshots img{border-radius:var(--radius);box-shadow:var(--shadow-lg);border:1px solid var(--gray-200)}
-@media(max-width:768px){.demo-screenshots{grid-template-columns:1fr}}
+/* --- NO APP REQUIRED SECTION --- */
+.no-app-box{background:linear-gradient(135deg,var(--navy),#112048);color:#fff;border-radius:var(--radius-xl);padding:50px 40px;box-shadow:var(--shadow-xl);position:relative;overflow:hidden}
+.no-app-box::before{content:'';position:absolute;top:-50%;right:-20%;width:500px;height:500px;background:radial-gradient(circle,rgba(6,182,212,.15) 0%,transparent 70%);pointer-events:none}
+.no-app-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:center;position:relative;z-index:1}
+.no-app-content h2{font-size:2.2rem;font-weight:800;margin-bottom:14px;color:#fff}
+.no-app-content p{font-size:1.02rem;color:rgba(255,255,255,.7);margin-bottom:24px;line-height:1.7}
+.no-list{list-style:none;display:flex;flex-direction:column;gap:12px;margin-bottom:28px}
+.no-list li{display:flex;align-items:center;gap:12px;font-size:.95rem;font-weight:500;color:rgba(255,255,255,.9)}
+.no-list .no-cross{width:22px;height:22px;border-radius:50%;background:rgba(239,68,68,.2);color:#f87171;display:flex;align-items:center;justify-content:center;font-size:12px;flex-shrink:0}
+.no-flow-pill{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.15);border-radius:100px;padding:12px 24px;display:inline-flex;align-items:center;gap:12px;font-size:.9rem;font-weight:700;color:var(--accent)}
 
-/* --- INTERACTIVE DEMO --- */
-.sim-demo{max-width:700px;margin:0 auto;background:var(--navy);border-radius:var(--radius-lg);padding:48px;position:relative;overflow:hidden}
-.sim-demo::before{content:'';position:absolute;top:-50%;right:-50%;width:100%;height:100%;background:radial-gradient(circle,rgba(6,182,212,.08) 0%,transparent 70%)}
-.sim-steps{display:flex;flex-direction:column;gap:24px;position:relative;z-index:1}
-.sim-step{display:flex;align-items:center;gap:20px;padding:20px;border-radius:var(--radius);background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.06);opacity:0.3;transition:all 0.5s ease}
-.sim-step.active{opacity:1;background:rgba(255,255,255,.08);border-color:rgba(6,182,212,.3);transform:translateX(8px)}
-.sim-step-icon{width:48px;height:48px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0}
-.sim-step h4{font-size:1rem;font-weight:600;color:var(--white);margin-bottom:4px}
-.sim-step p{font-size:.85rem;color:rgba(255,255,255,.5)}
-.sim-progress{height:3px;background:rgba(255,255,255,.1);border-radius:4px;margin-top:8px;overflow:hidden}
-.sim-progress-bar{height:100%;background:var(--gradient);width:0%;border-radius:4px;transition:width 1s ease}
-.sim-step.active .sim-progress-bar{width:100%}
-.sim-controls{text-align:center;margin-top:32px;position:relative;z-index:1}
-.sim-btn{background:var(--gradient);color:#fff;padding:12px 32px;border-radius:100px;font-weight:600;font-size:.9rem}
+.no-app-card-visual{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:var(--radius-lg);padding:30px;backdrop-filter:blur(8px)}
+.visual-flow-step{display:flex;align-items:center;gap:16px;padding:14px 0;border-bottom:1px solid rgba(255,255,255,.08)}
+.visual-flow-step:last-child{border-bottom:none}
+.visual-flow-num{width:32px;height:32px;border-radius:8px;background:var(--gradient);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.85rem}
+.visual-flow-info h4{font-size:.95rem;font-weight:600;color:#fff;margin-bottom:2px}
+.visual-flow-info p{font-size:.8rem;color:rgba(255,255,255,.55)}
+
+@media(max-width:860px){
+  .no-app-grid{grid-template-columns:1fr;gap:30px}
+  .no-app-box{padding:36px 24px}
+  .no-app-content h2{font-size:1.85rem}
+}
+
+/* --- PRODUCT DEMO & INTERACTIVE DUAL SIMULATION --- */
+.demo-tabs{display:flex;justify-content:center;gap:12px;margin-bottom:32px}
+.demo-tab-btn{padding:10px 24px;border-radius:100px;font-size:.9rem;font-weight:700;cursor:pointer;background:var(--gray-100);color:var(--slate);transition:all var(--transition)}
+.demo-tab-btn.active{background:var(--navy);color:#fff}
+
+.interactive-sim-box{max-width:860px;margin:0 auto 50px;background:var(--navy);border-radius:var(--radius-xl);padding:36px;box-shadow:var(--shadow-xl);border:1px solid var(--navy-border);position:relative;overflow:hidden}
+.sim-panels{display:grid;grid-template-columns:1fr 1.2fr;gap:28px;position:relative;z-index:1}
+
+.sim-phone-ui{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:var(--radius-lg);padding:20px}
+.phone-ui-header{display:flex;align-items:center;justify-content:space-between;padding-bottom:12px;border-bottom:1px solid rgba(255,255,255,.08);margin-bottom:16px}
+.phone-ui-title{font-size:.8rem;font-weight:700;color:rgba(255,255,255,.7);text-transform:uppercase;letter-spacing:.05em}
+.phone-mode-tag{font-size:.72rem;font-weight:700;padding:3px 8px;border-radius:4px}
+.phone-mode-tag.tag-wifi{background:rgba(2,132,199,.2);color:#38bdf8}
+.phone-mode-tag.tag-data{background:rgba(124,58,237,.2);color:#c084fc}
+
+.file-box-mock{background:rgba(255,255,255,.06);border:1px dashed rgba(255,255,255,.2);border-radius:var(--radius);padding:14px;margin-bottom:14px;display:flex;align-items:center;gap:12px}
+.file-box-icon{width:36px;height:36px;border-radius:8px;background:rgba(239,68,68,.2);color:#f87171;display:flex;align-items:center;justify-content:center;font-size:.85rem;font-weight:800}
+.file-box-info h5{font-size:.88rem;font-weight:600;color:#fff;margin-bottom:2px}
+.file-box-info span{font-size:.75rem;color:rgba(255,255,255,.5)}
+
+.phone-progress-wrap{margin-bottom:14px}
+.phone-progress-bar{height:6px;background:rgba(255,255,255,.1);border-radius:100px;overflow:hidden}
+.phone-progress-fill{height:100%;background:var(--gradient);width:0%;border-radius:100px;transition:width 0.8s ease}
+
+.phone-status-text{font-size:.8rem;color:rgba(255,255,255,.6);text-align:center;min-height:22px}
+
+.sim-pc-ui{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:var(--radius-lg);padding:20px}
+.pc-ui-header{display:flex;align-items:center;justify-content:space-between;padding-bottom:12px;border-bottom:1px solid rgba(255,255,255,.08);margin-bottom:16px}
+.pc-ui-title{font-size:.8rem;font-weight:700;color:rgba(255,255,255,.7);text-transform:uppercase;letter-spacing:.05em}
+.pc-status-pill{font-size:.72rem;font-weight:700;padding:3px 8px;border-radius:4px;background:rgba(16,185,129,.2);color:#34d399;display:flex;align-items:center;gap:5px}
+
+.pc-stream-item{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.08);border-radius:var(--radius);padding:14px;opacity:0.3;transition:all 0.5s ease}
+.pc-stream-item.active{opacity:1;background:rgba(255,255,255,.09);border-color:rgba(6,182,212,.4)}
+.pc-item-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px}
+.pc-item-meta{font-size:.78rem;color:rgba(255,255,255,.5)}
+.pc-item-badge{font-size:.7rem;font-weight:700;padding:2px 6px;border-radius:4px;background:rgba(26,86,219,.3);color:#60a5fa}
+.pc-item-title{font-size:.9rem;font-weight:700;color:#fff;margin-bottom:10px}
+.pc-item-actions{display:flex;gap:8px}
+.pc-btn-print{background:var(--success);color:#fff;padding:6px 14px;border-radius:6px;font-size:.78rem;font-weight:700;display:inline-flex;align-items:center;gap:6px}
+
+.sim-controls{text-align:center;margin-top:24px}
+.sim-mode-btn{background:var(--gradient);color:#fff;padding:12px 32px;border-radius:100px;font-weight:700;font-size:.92rem;transition:transform var(--transition)}
+.sim-mode-btn:hover{transform:translateY(-1px)}
+
+.demo-video-wrap{max-width:860px;margin:0 auto;border-radius:var(--radius-xl);overflow:hidden;box-shadow:var(--shadow-xl);background:#000;aspect-ratio:16/9;position:relative}
+.demo-video-wrap video{width:100%;height:100%;display:block;object-fit:cover}
+
+@media(max-width:768px){
+  .sim-panels{grid-template-columns:1fr;gap:20px}
+  .interactive-sim-box{padding:24px}
+}
 
 /* --- FEATURES GRID --- */
-.features-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:28px}
-.feature-card{padding:36px;border-radius:var(--radius-lg);background:var(--white);border:1px solid var(--gray-100);transition:all var(--transition)}
-.feature-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg);border-color:rgba(26,86,219,.12)}
-.feature-card-icon{width:52px;height:52px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:24px;margin-bottom:20px}
-.feature-card h3{font-size:1.1rem;font-weight:700;color:var(--navy);margin-bottom:10px}
-.feature-card p{font-size:.9rem;color:var(--slate);line-height:1.65}
-.feature-card:nth-child(7){grid-column:2}
-@media(max-width:968px){.features-grid{grid-template-columns:repeat(2,1fr)}.feature-card:nth-child(7){grid-column:auto}}
+.features-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px}
+.feature-card{background:var(--white);padding:32px 24px;border-radius:var(--radius-lg);border:1px solid var(--gray-200);box-shadow:var(--shadow-sm);transition:all var(--transition)}
+.feature-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-md);border-color:var(--primary)}
+.feature-card-icon{width:48px;height:48px;border-radius:12px;display:flex;align-items:center;justify-content:center;margin-bottom:18px}
+.feature-card h3{font-size:1.08rem;font-weight:700;color:var(--navy);margin-bottom:8px}
+.feature-card p{font-size:.88rem;color:var(--slate);line-height:1.6}
+
+@media(max-width:1024px){.features-grid{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:580px){.features-grid{grid-template-columns:1fr}}
 
-/* --- SOFTWARE PREVIEW --- */
-.preview-img{border-radius:var(--radius-lg);box-shadow:var(--shadow-xl);border:1px solid var(--gray-200);margin-bottom:40px}
-.preview-grid{display:grid;grid-template-columns:1.5fr 1fr;gap:40px;align-items:center}
-.preview-grid img{border-radius:var(--radius);box-shadow:var(--shadow)}
-@media(max-width:768px){.preview-grid{grid-template-columns:1fr}}
-
-/* --- USE CASES --- */
-.use-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:28px}
-.use-card{padding:36px 28px;border-radius:var(--radius-lg);background:var(--white);border:1px solid var(--gray-100);text-align:center;transition:all var(--transition)}
-.use-card:hover{transform:translateY(-6px);box-shadow:var(--shadow-lg);border-color:rgba(26,86,219,.15)}
-.use-card-icon{font-size:40px;margin-bottom:16px}
-.use-card h3{font-size:1.1rem;font-weight:700;color:var(--navy);margin-bottom:10px}
-.use-card p{font-size:.88rem;color:var(--slate);line-height:1.6}
-@media(max-width:768px){.use-grid{grid-template-columns:repeat(2,1fr)}}
+/* --- USE CASES / TRUST --- */
+.use-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px}
+.use-card{background:var(--white);padding:32px 24px;border-radius:var(--radius-lg);border:1px solid var(--gray-200);text-align:center;transition:all var(--transition)}
+.use-card:hover{transform:translateY(-5px);box-shadow:var(--shadow-md);border-color:var(--primary)}
+.use-card-icon{font-size:36px;margin-bottom:14px}
+.use-card h3{font-size:1.08rem;font-weight:700;color:var(--navy);margin-bottom:8px}
+.use-card p{font-size:.85rem;color:var(--slate);line-height:1.6}
+@media(max-width:860px){.use-grid{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:480px){.use-grid{grid-template-columns:1fr}}
 
 /* --- COMPARISON TABLE --- */
-.comparison-table{max-width:800px;margin:0 auto;border-radius:var(--radius-lg);overflow:hidden;box-shadow:var(--shadow-lg);border:1px solid var(--gray-200)}
-.comp-header{display:grid;grid-template-columns:1.5fr 1fr 1fr;background:var(--navy);color:#fff;font-weight:700;font-size:.9rem}
-.comp-header>div{padding:18px 24px}
-.comp-row{display:grid;grid-template-columns:1.5fr 1fr 1fr;border-bottom:1px solid var(--gray-100)}
+.comparison-table{max-width:860px;margin:0 auto;border-radius:var(--radius-lg);overflow:hidden;box-shadow:var(--shadow-md);border:1px solid var(--gray-200)}
+.comp-header{display:grid;grid-template-columns:1.4fr 1fr 1fr;background:var(--navy);color:#fff;font-weight:700;font-size:.9rem}
+.comp-header>div{padding:16px 22px}
+.comp-row{display:grid;grid-template-columns:1.4fr 1fr 1fr;border-bottom:1px solid var(--gray-100);background:var(--white)}
 .comp-row:last-child{border-bottom:none}
-.comp-row>div{padding:16px 24px;font-size:.9rem;display:flex;align-items:center;gap:8px}
+.comp-row>div{padding:14px 22px;font-size:.88rem;display:flex;align-items:center;gap:8px}
 .comp-row>div:first-child{font-weight:600;color:var(--navy)}
 .comp-row:nth-child(even){background:var(--gray-50)}
 .comp-old{color:#b91c1c}
 .comp-new{color:var(--success);font-weight:600}
-@media(max-width:580px){.comp-header,.comp-row{grid-template-columns:1fr;gap:0}.comp-header>div,.comp-row>div{padding:10px 16px}}
+@media(max-width:640px){
+  .comp-header,.comp-row{grid-template-columns:1fr;gap:0}
+  .comp-header>div,.comp-row>div{padding:10px 16px}
+}
 
 /* --- SECURITY --- */
 .security-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
-.sec-card{padding:32px;border-radius:var(--radius);background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);transition:all var(--transition)}
-.sec-card:hover{background:rgba(255,255,255,.08);border-color:rgba(6,182,212,.25);transform:translateY(-4px)}
-.sec-card-icon{font-size:28px;margin-bottom:16px}
-.sec-card h4{font-size:1rem;font-weight:700;color:var(--white);margin-bottom:8px}
-.sec-card p{font-size:.88rem;color:rgba(255,255,255,.55);line-height:1.6}
+.sec-card{padding:28px;border-radius:var(--radius-lg);background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);transition:all var(--transition)}
+.sec-card:hover{background:rgba(255,255,255,.08);border-color:rgba(6,182,212,.3);transform:translateY(-3px)}
+.sec-card-icon{font-size:26px;margin-bottom:14px}
+.sec-card h4{font-size:1rem;font-weight:700;color:var(--white);margin-bottom:6px}
+.sec-card p{font-size:.85rem;color:rgba(255,255,255,.6);line-height:1.6}
 @media(max-width:768px){.security-grid{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:480px){.security-grid{grid-template-columns:1fr}}
 
-/* --- DOWNLOAD --- */
-.dl-box{max-width:640px;margin:0 auto;text-align:center;padding:48px;background:var(--white);border-radius:var(--radius-lg);box-shadow:var(--shadow-lg);border:1px solid var(--gray-100)}
-.dl-meta{display:flex;justify-content:center;gap:24px;margin-top:24px;flex-wrap:wrap}
-.dl-meta span{font-size:.85rem;color:var(--slate);display:flex;align-items:center;gap:6px}
+/* --- DOWNLOAD SECTION --- */
+.dl-box{max-width:680px;margin:0 auto;text-align:center;padding:48px 36px;background:var(--white);border-radius:var(--radius-xl);box-shadow:var(--shadow-lg);border:1px solid var(--gray-200)}
+.dl-meta{display:flex;justify-content:center;gap:24px;margin-top:22px;flex-wrap:wrap}
+.dl-meta span{font-size:.85rem;color:var(--slate);display:flex;align-items:center;gap:6px;font-weight:500}
 
-/* --- INSTALL STEPS --- */
-.install-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:32px}
-.install-card{text-align:center;padding:32px 24px}
-.install-card .inst-num{width:48px;height:48px;border-radius:50%;background:var(--gradient);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:1.1rem;margin:0 auto 16px}
-.install-card h4{font-size:1.05rem;font-weight:700;color:var(--navy);margin-bottom:8px}
-.install-card p{font-size:.9rem;color:var(--slate);line-height:1.6}
-@media(max-width:580px){.install-grid{grid-template-columns:1fr}}
+/* --- INSTALLATION STEPS --- */
+.install-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:28px}
+.install-card{text-align:center;padding:28px 20px;background:var(--white);border-radius:var(--radius-lg);border:1px solid var(--gray-200)}
+.inst-num{width:46px;height:46px;border-radius:50%;background:var(--gradient);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:1.05rem;margin:0 auto 14px}
+.install-card h4{font-size:1.05rem;font-weight:700;color:var(--navy);margin-bottom:6px}
+.install-card p{font-size:.88rem;color:var(--slate);line-height:1.6}
+@media(max-width:640px){.install-grid{grid-template-columns:1fr}}
 
 /* --- SYSTEM REQ --- */
-.req-list{max-width:600px;margin:0 auto;display:flex;flex-direction:column;gap:16px}
-.req-item{display:flex;align-items:center;gap:16px;padding:18px 24px;background:var(--white);border-radius:var(--radius);border:1px solid var(--gray-100)}
-.req-item .req-icon{font-size:20px;flex-shrink:0}
-.req-item span{font-size:.95rem;color:var(--navy);font-weight:500}
+.req-list{max-width:600px;margin:0 auto;display:flex;flex-direction:column;gap:12px}
+.req-item{display:flex;align-items:center;gap:14px;padding:16px 22px;background:var(--white);border-radius:var(--radius);border:1px solid var(--gray-200)}
+.req-item .req-icon{font-size:18px;flex-shrink:0}
+.req-item span{font-size:.92rem;color:var(--navy);font-weight:500}
 
-/* --- FAQ --- */
-.faq-list{max-width:740px;margin:0 auto;display:flex;flex-direction:column;gap:12px}
-.faq-item{border:1px solid var(--gray-200);border-radius:var(--radius);overflow:hidden;transition:border-color var(--transition)}
-.faq-item.open{border-color:rgba(26,86,219,.25)}
-.faq-q{display:flex;align-items:center;justify-content:space-between;padding:20px 24px;cursor:pointer;font-size:1rem;font-weight:600;color:var(--navy);background:var(--white);transition:background var(--transition)}
+/* --- FAQ ACCORDION --- */
+.faq-list{max-width:760px;margin:0 auto;display:flex;flex-direction:column;gap:12px}
+.faq-item{border:1px solid var(--gray-200);border-radius:var(--radius);overflow:hidden;transition:border-color var(--transition);background:var(--white)}
+.faq-item.open{border-color:rgba(26,86,219,.35);box-shadow:var(--shadow-sm)}
+.faq-q{display:flex;align-items:center;justify-content:space-between;padding:18px 22px;cursor:pointer;font-size:.98rem;font-weight:600;color:var(--navy);transition:background var(--transition)}
 .faq-q:hover{background:var(--gray-50)}
-.faq-q .arrow{font-size:20px;color:var(--slate);transition:transform var(--transition);flex-shrink:0}
+.faq-q .arrow{font-size:18px;color:var(--slate);transition:transform var(--transition);flex-shrink:0}
 .faq-item.open .faq-q .arrow{transform:rotate(180deg)}
-.faq-a{max-height:0;overflow:hidden;transition:max-height 0.4s ease,padding 0.3s ease}
+.faq-a{max-height:0;overflow:hidden;transition:max-height 0.35s ease}
 .faq-item.open .faq-a{max-height:500px}
-.faq-a-inner{padding:0 24px 20px;font-size:.92rem;color:var(--slate);line-height:1.7}
+.faq-a-inner{padding:0 22px 18px;font-size:.9rem;color:var(--slate);line-height:1.7}
 
-/* --- CTA --- */
-.final-cta{padding:100px 0;background:var(--navy);text-align:center;position:relative;overflow:hidden}
+/* --- FINAL CTA --- */
+.final-cta{padding:90px 0;background:var(--navy);text-align:center;position:relative;overflow:hidden}
 .final-cta::before{content:'';position:absolute;top:-100px;left:50%;transform:translateX(-50%);width:600px;height:600px;background:radial-gradient(circle,rgba(6,182,212,.12) 0%,transparent 70%);pointer-events:none}
-.final-cta h2{font-size:2.6rem;font-weight:800;color:var(--white);margin-bottom:16px;position:relative}
-.final-cta p{font-size:1.1rem;color:rgba(255,255,255,.55);margin-bottom:40px;max-width:500px;margin-left:auto;margin-right:auto;position:relative}
+.final-cta h2{font-size:2.5rem;font-weight:800;color:var(--white);margin-bottom:14px;position:relative}
+.final-cta p{font-size:1.08rem;color:rgba(255,255,255,.65);margin-bottom:36px;max-width:520px;margin-left:auto;margin-right:auto;position:relative}
 .final-cta-buttons{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;position:relative}
 
 /* --- FOOTER --- */
-.footer{background:var(--gray-900);color:rgba(255,255,255,.5);padding:48px 0 32px}
-.footer-inner{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:24px}
+.footer{background:var(--gray-900);color:rgba(255,255,255,.5);padding:44px 0 28px}
+.footer-inner{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:20px}
 .footer-brand{display:flex;align-items:center;gap:10px}
-.footer-brand img{width:32px;height:32px}
+.footer-brand img{width:32px;height:32px;aspect-ratio:1/1;object-fit:contain}
 .footer-brand span{font-weight:700;color:var(--white);font-size:1rem}
-.footer-links{display:flex;gap:24px;flex-wrap:wrap}
+.footer-links{display:flex;gap:20px;flex-wrap:wrap}
 .footer-links a{font-size:.85rem;transition:color var(--transition)}
 .footer-links a:hover{color:var(--white)}
-.footer-copy{text-align:center;margin-top:32px;padding-top:24px;border-top:1px solid rgba(255,255,255,.08);font-size:.82rem}
+.footer-copy{text-align:center;margin-top:28px;padding-top:20px;border-top:1px solid rgba(255,255,255,.08);font-size:.8rem}
 </style>
 </head>
 <body>
@@ -281,11 +399,16 @@ h1,h2,h3,h4,h5,h6{letter-spacing:-0.025em;line-height:1.2}
 <!-- ========== NAVBAR ========== -->
 <nav class="navbar" id="navbar">
 <div class="nav-inner">
-<a href="#" class="nav-logo"><img src="logo.png" onerror="this.src='https://i.postimg.cc/YCFyR8d8/Gemini-Generated-Image-ipd9ndipd9ndipd9.png'" alt="MR Print Hub Logo" width="36" height="36"><span>MR Print Hub</span></a>
+<a href="#" class="nav-logo">
+<img src="logo-72.webp" onerror="this.src='https://i.postimg.cc/YCFyR8d8/Gemini-Generated-Image-ipd9ndipd9ndipd9.png'" alt="MR Print Hub Logo" width="36" height="36" fetchpriority="high">
+<span>MR Print Hub</span>
+</a>
 <ul class="nav-links">
 <li><a href="#home">Home</a></li>
-<li><a href="#features">Features</a></li>
+<li><a href="#dual-transfer">Dual Transfer</a></li>
 <li><a href="#how-it-works">How It Works</a></li>
+<li><a href="#no-app">No App</a></li>
+<li><a href="#features">Features</a></li>
 <li><a href="#demo">Demo</a></li>
 <li><a href="#download">Download</a></li>
 <li><a href="#faq">FAQ</a></li>
@@ -297,8 +420,10 @@ h1,h2,h3,h4,h5,h6{letter-spacing:-0.025em;line-height:1.2}
 </div>
 <div class="mobile-menu" id="mobileMenu">
 <a href="#home" class="mobile-link">Home</a>
-<a href="#features" class="mobile-link">Features</a>
+<a href="#dual-transfer" class="mobile-link">Dual Transfer</a>
 <a href="#how-it-works" class="mobile-link">How It Works</a>
+<a href="#no-app" class="mobile-link">No App Needed</a>
+<a href="#features" class="mobile-link">Features</a>
 <a href="#demo" class="mobile-link">Demo</a>
 <a href="#download" class="mobile-link">Download</a>
 <a href="#faq" class="mobile-link">FAQ</a>
@@ -306,509 +431,587 @@ h1,h2,h3,h4,h5,h6{letter-spacing:-0.025em;line-height:1.2}
 </div>
 </nav>
 
-<!-- ========== HERO ========== -->
+<!-- ========== HERO SECTION ========== -->
 <section class="hero" id="home">
 <div class="container">
 <div class="hero-grid">
-<div class="fade-up">
-<div class="hero-badge">Windows Printing Software</div>
-<h1>Turn Your Printing Shop Into a <span>Smarter Digital Print Hub.</span></h1>
-<p class="hero-desc">Let customers send files straight to your print counter by scanning a QR code. No app downloads. No internet needed. Just fast, secure, local Wi-Fi file transfer built for busy printing shops.</p>
+<div class="fade-up visible">
+<div class="hero-badges">
+<span class="badge-pill badge-blue"><span class="badge-pulse"></span> Windows Software</span>
+<span class="badge-pill badge-cyan">New: Dual Transfer Mode</span>
+</div>
+<h1>Send Files. <span>Print Faster.</span></h1>
+<p class="hero-subhead">Send files directly to your printing shop using Local Wi-Fi or Mobile Internet.</p>
+<p class="hero-desc">MR Print Hub makes customer file submission effortless. Customers simply scan your counter QR code and transmit documents directly to your shop computer—ready for immediate printing.</p>
+
+<div class="hero-dual-pills">
+<div class="dual-pill wifi">
+<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12.55a11 11 0 0114.08 0"/><path d="M1.42 9a16 16 0 0121.16 0"/><path d="M8.53 16.11a6 6 0 016.95 0"/><line x1="12" y1="20" x2="12.01" y2="20"/></svg>
+<span>1. Local Wi-Fi (LAN)</span>
+</div>
+<div class="dual-pill data">
+<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg>
+<span>2. Mobile Data / Internet</span>
+</div>
+</div>
+
 <div class="hero-buttons">
 <a href="#download" class="btn-primary">
 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-Download for Windows
+Download MR Print Hub
 </a>
-<a href="#demo" class="btn-secondary">
+<a href="#how-it-works" class="btn-secondary">
 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"/></svg>
-Watch Demo
+See How It Works
 </a>
 </div>
 </div>
-<div class="hero-mockups fade-up">
-<img src="Desktop Ui.png" alt="MR Print Hub Desktop Application" class="hero-mockup-desktop" loading="eager">
-<img src="mobile-screen-mockup.png" alt="MR Print Hub Mobile Upload Interface" class="hero-mockup-mobile" loading="eager">
+
+<div class="hero-visual fade-up visible">
+<div class="hero-mockups">
+<img src="desktop-ui-800.webp" srcset="desktop-ui-500.webp 500w, desktop-ui-800.webp 800w, desktop-ui.webp 1200w" sizes="(max-width: 480px) 100vw, (max-width: 968px) 80vw, 500px" width="500" height="273" alt="MR Print Hub Desktop Application UI" class="hero-mockup-desktop" fetchpriority="high">
+<img src="mobile-mockup-250.webp" srcset="mobile-mockup-250.webp 250w, mobile-mockup-400.webp 400w, mobile-screen-mockup.webp 600w" sizes="(max-width: 480px) 130px, 190px" width="190" height="104" alt="MR Print Hub Mobile Upload Screen" class="hero-mockup-mobile" fetchpriority="high">
+</div>
+<div class="hero-channel-badge">
+<span class="channel-dot wifi"></span> Local Wi-Fi
+<span style="color:var(--gray-300)">|</span>
+<span class="channel-dot data"></span> Mobile Internet
+<span style="color:var(--success);margin-left:4px">● Direct to PC</span>
+</div>
 </div>
 </div>
 </div>
 </section>
 
-<!-- ========== HERO FLOW ANIMATION ========== -->
-<section class="hero-flow">
-<div class="container fade-up">
-<h2>How Files Flow From Customer to Print</h2>
-<div class="flow-steps">
-<div class="flow-step">
-<div class="flow-icon blue">
-<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
-</div>
-<span class="flow-label">QR Code</span>
-</div>
-<span class="flow-arrow">&rarr;</span>
-<div class="flow-step">
-<div class="flow-icon cyan">
-<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
-</div>
-<span class="flow-label">Customer Phone</span>
-</div>
-<span class="flow-arrow">&rarr;</span>
-<div class="flow-step">
-<div class="flow-icon blue">
-<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
-</div>
-<span class="flow-label">File Upload</span>
-</div>
-<span class="flow-arrow">&rarr;</span>
-<div class="flow-step">
-<div class="flow-icon cyan">
-<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 12H2"/><path d="M5.45 5.11L2 12v6a2 2 0 002 2h16a2 2 0 002-2v-6l-3.45-6.89A2 2 0 0016.76 4H7.24a2 2 0 00-1.79 1.11z"/></svg>
-</div>
-<span class="flow-label">MR Print Hub</span>
-</div>
-<span class="flow-arrow">&rarr;</span>
-<div class="flow-step">
-<div class="flow-icon blue">
-<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
-</div>
-<span class="flow-label">Shop Computer</span>
-</div>
-<span class="flow-arrow">&rarr;</span>
-<div class="flow-step">
-<div class="flow-icon green">
-<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 01-2-2v-5a2 2 0 012-2h16a2 2 0 012 2v5a2 2 0 01-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
-</div>
-<span class="flow-label">Print</span>
-</div>
-</div>
-</div>
-</section>
-
-<!-- ========== TRUST/QUICK BENEFITS ========== -->
-<section class="trust section-gray">
+<!-- ========== DUAL TRANSFER FLOW BANNER ========== -->
+<section class="transfer-banner">
 <div class="container">
-<div class="trust-grid">
-<div class="trust-card fade-up">
-<div class="trust-card-icon" style="background:linear-gradient(135deg,rgba(26,86,219,.1),rgba(26,86,219,.05));color:var(--primary)">
-<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+<div class="flow-container fade-up">
+<div class="flow-node">
+<div class="flow-icon-circle" style="background:var(--navy)">
+<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
 </div>
-<h4>Fast File Transfer</h4>
-<p>Files move over local Wi-Fi at LAN speed. No internet bottleneck, no cloud delays.</p>
+<span>Customer Phone</span>
 </div>
-<div class="trust-card fade-up">
-<div class="trust-card-icon" style="background:linear-gradient(135deg,rgba(6,182,212,.1),rgba(6,182,212,.05));color:var(--accent)">
-<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
+
+<div class="flow-connector">&rarr;</div>
+
+<div class="flow-paths-box">
+<span class="flow-path-tag tag-wifi">
+<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12.55a11 11 0 0114.08 0"/><path d="M1.42 9a16 16 0 0121.16 0"/><line x1="12" y1="20" x2="12.01" y2="20"/></svg>
+Path A: Local Wi-Fi (LAN Speed)
+</span>
+<span class="flow-path-tag tag-data">
+<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg>
+Path B: Mobile Data / Internet
+</span>
 </div>
-<h4>No App Required</h4>
-<p>Customers just scan a QR code and upload from their phone browser. Zero installs.</p>
+
+<div class="flow-connector">&rarr;</div>
+
+<div class="flow-node">
+<div class="flow-icon-circle" style="background:var(--primary)">
+<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8"/><path d="M12 17v4"/></svg>
 </div>
-<div class="trust-card fade-up">
-<div class="trust-card-icon" style="background:linear-gradient(135deg,rgba(26,86,219,.1),rgba(26,86,219,.05));color:var(--primary)">
-<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8"/><path d="M12 17v4"/><path d="M7 7h2v2H7z"/><path d="M7 11h6"/></svg>
+<span>Shop Computer</span>
 </div>
-<h4>Windows Ready</h4>
-<p>Runs natively on Windows 10 and 11. Installs in under a minute. No configuration headaches.</p>
+
+<div class="flow-connector">&rarr;</div>
+
+<div class="flow-node">
+<div class="flow-icon-circle" style="background:var(--success)">
+<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 01-2-2v-5a2 2 0 012-2h16a2 2 0 012 2v5a2 2 0 01-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
 </div>
-<div class="trust-card fade-up">
-<div class="trust-card-icon" style="background:linear-gradient(135deg,rgba(22,163,74,.1),rgba(22,163,74,.05));color:var(--success)">
-<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-</div>
-<h4>Private &amp; Secure</h4>
-<p>CSPRNG tokens, firewall protection, and antivirus checks. Files never leave your local network.</p>
-</div>
-<div class="trust-card fade-up">
-<div class="trust-card-icon" style="background:linear-gradient(135deg,rgba(6,182,212,.1),rgba(6,182,212,.05));color:var(--accent)">
-<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 01-2-2v-5a2 2 0 012-2h16a2 2 0 012 2v5a2 2 0 01-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
-</div>
-<h4>Print Faster</h4>
-<p>Files arrive verified and ready to print. Skip the USB, skip the email, skip the waiting.</p>
+<span>Print Ready</span>
 </div>
 </div>
 </div>
 </section>
 
-<!-- ========== PROBLEM → SOLUTION ========== -->
-<section class="section" id="problem-solution">
+<!-- ========== NEW FEATURE SECTION: SEND FILES. YOUR WAY. ========== -->
+<section class="section section-gray cv-auto" id="dual-transfer">
 <div class="container">
 <div class="section-header fade-up">
-<span class="section-label">The Problem</span>
-<h2>Still Receiving Customer Files Manually?</h2>
-<p>Most printing shops still rely on outdated file-sharing methods that waste time, create security risks, and frustrate customers.</p>
+<span class="section-label">Dual Transfer Capability</span>
+<h2>Send Files. Your Way.</h2>
+<p>Whether your customer is connected to the shop Wi-Fi or using their own mobile internet, MR Print Hub makes file sending simple and frictionless.</p>
 </div>
-<div class="ps-grid">
-<div class="ps-card ps-problem fade-up">
-<h3>The Old Way</h3>
-<ul class="ps-list">
-<li><span class="icon">&#10007;</span><span>Customers send files over WhatsApp — compressed, low quality</span></li>
-<li><span class="icon">&#10007;</span><span>Shop owner manually downloads from email or messaging apps</span></li>
-<li><span class="icon">&#10007;</span><span>USB drives carry malware and viruses into shop computers</span></li>
-<li><span class="icon">&#10007;</span><span>Files get lost in chat history or buried in downloads folder</span></li>
-<li><span class="icon">&#10007;</span><span>No record of who sent what file or when</span></li>
-<li><span class="icon">&#10007;</span><span>Customers wait in line just to hand over a file</span></li>
-</ul>
+
+<div class="dual-feature-grid">
+<!-- Card 1: Local Wi-Fi -->
+<div class="dual-card card-wifi fade-up">
+<div class="dual-card-header">
+<div class="dual-card-icon">
+<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12.55a11 11 0 0114.08 0"/><path d="M1.42 9a16 16 0 0121.16 0"/><path d="M8.53 16.11a6 6 0 016.95 0"/><line x1="12" y1="20" x2="12.01" y2="20"/></svg>
 </div>
-<div class="ps-card ps-solution fade-up">
-<h3>MR Print Hub Changes That.</h3>
-<ul class="ps-list">
-<li><span class="icon">&#10003;</span><span>Customers scan a QR code and upload files in seconds</span></li>
-<li><span class="icon">&#10003;</span><span>Files appear instantly on your desktop — organized and verified</span></li>
-<li><span class="icon">&#10003;</span><span>Zero internet needed — everything stays on your local Wi-Fi</span></li>
-<li><span class="icon">&#10003;</span><span>Automatic antivirus check and extension validation on every file</span></li>
-<li><span class="icon">&#10003;</span><span>Full upload history with timestamps and customer session tracking</span></li>
-<li><span class="icon">&#10003;</span><span>Print-ready files arrive at your counter without any manual steps</span></li>
-</ul>
+<span class="dual-card-badge">Zero Internet Needed</span>
+</div>
+<h3>Local Wi-Fi Transfer</h3>
+<p>Fast local transfer when the customer and shop computer are connected to the same network. Files transfer at full LAN bandwidth directly to the counter computer without consuming internet quota.</p>
+<div class="dual-card-flow">
+<span>📱 Customer Phone</span>
+<span>&rarr;</span>
+<span style="color:var(--wifi-color)">📶 Local Wi-Fi</span>
+<span>&rarr;</span>
+<span>🖥️ Shop PC</span>
+<span>&rarr;</span>
+<span>🖨️ Print</span>
+</div>
+</div>
+
+<!-- Card 2: Mobile Internet -->
+<div class="dual-card card-data fade-up">
+<div class="dual-card-header">
+<div class="dual-card-icon">
+<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg>
+</div>
+<span class="dual-card-badge">No Wi-Fi Password Needed</span>
+</div>
+<h3>Mobile Internet / Data</h3>
+<p>No need to connect to the shop Wi-Fi. Customers can submit files using their cellular mobile data (4G/5G). Perfect for busy shops where sharing Wi-Fi passwords slows down service.</p>
+<div class="dual-card-flow">
+<span>📱 Customer Phone</span>
+<span>&rarr;</span>
+<span style="color:var(--data-color)">🌐 Mobile Data</span>
+<span>&rarr;</span>
+<span>🖥️ Shop PC</span>
+<span>&rarr;</span>
+<span>🖨️ Print</span>
+</div>
+</div>
+</div>
+
+<!-- Convergence info banner -->
+<div class="convergence-banner fade-up">
+<div class="convergence-text">
+<h4>Both Paths Converge Directly on Your Shop PC</h4>
+<p>Regardless of how the customer sends the file, all incoming submissions appear neatly inside MR Print Hub's Live Upload Stream.</p>
+</div>
+<div class="convergence-tag">
+<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+One Unified Dashboard
 </div>
 </div>
 </div>
 </section>
 
-<!-- ========== HOW IT WORKS ========== -->
-<section class="section section-gray" id="how-it-works">
+<!-- ========== HOW IT WORKS (4 STEPS) ========== -->
+<section class="section cv-auto" id="how-it-works">
 <div class="container">
 <div class="section-header fade-up">
-<span class="section-label">How It Works</span>
-<h2>Four Simple Steps to Faster Printing</h2>
-<p>From the moment a customer walks in to the moment their document hits the printer — it takes less than 30 seconds.</p>
+<span class="section-label">Seamless Workflow</span>
+<h2>How MR Print Hub Works</h2>
+<p>Transform walk-in document printing into an effortless 4-step process that takes less than 30 seconds.</p>
 </div>
+
 <div class="steps-grid">
 <div class="step-card fade-up">
-<div class="step-number">1</div>
-<h3>Scan QR Code</h3>
-<p>Display a live QR code on your shop counter or screen. Customers scan it with any phone camera to open the upload page — no app download needed.</p>
+<div class="step-num">01</div>
+<h3>Scan</h3>
+<p>Customer scans the shop's QR code displayed on the counter or printed ticket using their phone camera.</p>
+<span class="step-tag">Camera Scan</span>
 </div>
+
 <div class="step-card fade-up">
-<div class="step-number">2</div>
-<h3>Upload Files</h3>
-<p>The customer's phone browser opens a clean upload interface at mrprinthub.local/quickupload. They pick their PDF, images, or DOCX files and tap "Send to Print Counter."</p>
+<div class="step-num">02</div>
+<h3>Select</h3>
+<p>Customer selects their files (PDF, DOCX, Images) from their phone browser without installing any app.</p>
+<span class="step-tag">Document Picker</span>
 </div>
+
 <div class="step-card fade-up">
-<div class="step-number">3</div>
-<h3>Receive on PC</h3>
-<p>Files transfer instantly over local Wi-Fi to your Windows PC. MR Print Hub runs antivirus checks, validates file extensions, and stores everything safely in local storage.</p>
+<div class="step-num">03</div>
+<h3>Send</h3>
+<p>Customer sends files using whichever connection is available: Local Wi-Fi or Mobile Internet.</p>
+<span class="step-tag">Wi-Fi or Mobile Data</span>
 </div>
+
 <div class="step-card fade-up">
-<div class="step-number">4</div>
+<div class="step-num">04</div>
 <h3>Print</h3>
-<p>Verified files appear in your Live Upload Stream, ready to open and print. No searching through emails, no plugging in USB drives, no hassle.</p>
+<p>Files arrive verified on your Windows desktop. Click "Print Now" to deliver instantly to your printer.</p>
+<span class="step-tag">Instant Print</span>
 </div>
 </div>
 </div>
 </section>
 
-<!-- ========== INTERACTIVE PRODUCT DEMO ========== -->
-<section class="section" id="demo">
+<!-- ========== NO APP REQUIRED SECTION ========== -->
+<section class="section cv-auto" id="no-app">
+<div class="container">
+<div class="no-app-box fade-up">
+<div class="no-app-grid">
+<div class="no-app-content">
+<span class="section-label" style="color:var(--accent)">Zero Friction Experience</span>
+<h2>No App. No Account. No Hassle.</h2>
+<p>Traditional file collection is slow and messy. MR Print Hub removes every barrier between your customer and your printer.</p>
+
+<ul class="no-list">
+<li><span class="no-cross">&#10007;</span> No mobile app download required</li>
+<li><span class="no-cross">&#10007;</span> No customer account or registration</li>
+<li><span class="no-cross">&#10007;</span> No complicated setup or configuration</li>
+<li><span class="no-cross">&#10007;</span> No WhatsApp file compression or contact sharing</li>
+<li><span class="no-cross">&#10007;</span> No dangerous USB flash drive transfers</li>
+</ul>
+
+<div class="no-flow-pill">
+Simple Flow: Scan &rarr; Select &rarr; Send &rarr; Print
+</div>
+</div>
+
+<div class="no-app-card-visual">
+<div class="visual-flow-step">
+<div class="visual-flow-num">1</div>
+<div class="visual-flow-info">
+<h4>Browser-Based Upload</h4>
+<p>Opens instantly in Safari, Chrome, or any mobile browser</p>
+</div>
+</div>
+<div class="visual-flow-step">
+<div class="visual-flow-num">2</div>
+<div class="visual-flow-info">
+<h4>Full Original Quality</h4>
+<p>Zero compression on PDFs, Word docs, and high-res photos</p>
+</div>
+</div>
+<div class="visual-flow-step">
+<div class="visual-flow-num">3</div>
+<div class="visual-flow-info">
+<h4>Secure Session Token</h4>
+<p>CSPRNG tokens protect each customer's session</p>
+</div>
+</div>
+<div class="visual-flow-step">
+<div class="visual-flow-num">4</div>
+<div class="visual-flow-info">
+<h4>Automated Cleanup</h4>
+<p>Manage file retention easily via Storage Manager</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- ========== PRODUCT DEMONSTRATION & INTERACTIVE DUAL SIMULATION ========== -->
+<section class="section section-gray cv-auto" id="demo">
 <div class="container">
 <div class="section-header fade-up">
-<span class="section-label">Product Demo</span>
+<span class="section-label">Interactive Experience</span>
 <h2>See MR Print Hub In Action</h2>
-<p>Watch a complete walkthrough of MR Print Hub — from QR code generation to file upload and printing.</p>
+<p>Experience how both Local Wi-Fi and Mobile Internet transfers deliver files straight to your shop counter.</p>
 </div>
+
+<!-- Interactive Simulation Box -->
+<div class="interactive-sim-box fade-up">
+<div class="sim-panels">
+<!-- Customer Phone Side -->
+<div class="sim-phone-ui">
+<div class="phone-ui-header">
+<span class="phone-ui-title">Customer Phone</span>
+<span class="phone-mode-tag tag-wifi" id="simModeBadge">Mode: Local Wi-Fi</span>
+</div>
+
+<div class="file-box-mock">
+<div class="file-box-icon">PDF</div>
+<div class="file-box-info">
+<h5>document.pdf</h5>
+<span>1.8 MB &bull; Selected</span>
+</div>
+</div>
+
+<div class="phone-progress-wrap">
+<div class="phone-progress-bar">
+<div class="phone-progress-fill" id="simPhoneProgress"></div>
+</div>
+</div>
+
+<div class="phone-status-text" id="simPhoneStatus">
+Tap "Simulate Transfer" to test workflow
+</div>
+</div>
+
+<!-- Shop Computer PC Side -->
+<div class="sim-pc-ui">
+<div class="pc-ui-header">
+<span class="pc-ui-title">Shop Computer UI</span>
+<span class="pc-status-pill">
+<span style="width:6px;height:6px;background:#10b981;border-radius:50%"></span>
+Service Connected
+</span>
+</div>
+
+<div class="pc-stream-item" id="simPcItem">
+<div class="pc-item-header">
+<span class="pc-item-meta">Live Upload Stream</span>
+<span class="pc-item-badge">#CUST401</span>
+</div>
+<div class="pc-item-title">document.pdf</div>
+<div class="pc-item-actions">
+<span class="pc-btn-print">
+<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 01-2-2v-5a2 2 0 012-2h16a2 2 0 012 2v5a2 2 0 01-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+Ready to Print
+</span>
+</div>
+</div>
+</div>
+</div>
+
+<div class="sim-controls">
+<button class="sim-mode-btn" id="simRunBtn" onclick="runDualSimulation()">
+Simulate Local Wi-Fi Transfer
+</button>
+<button class="btn-secondary" style="margin-left:10px;padding:12px 24px;font-size:.9rem" onclick="toggleSimMode()">
+Switch to Mobile Internet
+</button>
+</div>
+</div>
+
+<!-- Video Demonstration -->
 <div class="demo-video-wrap fade-up">
-<video controls preload="metadata" poster="Desktop Ui.png" loading="lazy">
-<source src="demo-video.mp4" type="video/mp4">
+<video controls preload="metadata" poster="video-poster.webp">
+<source src="demo-video.webm" type="video/webm">
 Your browser does not support the video tag.
 </video>
-</div>
-<div class="demo-screenshots fade-up">
-<img src="Desktop Ui.png" alt="MR Print Hub Desktop Interface showing Live Upload Stream and Customer Access panel" loading="lazy">
-<img src="mobile-screen-mockup.png" alt="MR Print Hub Mobile Upload Interface on customer phone" loading="lazy">
-</div>
-</div>
-</section>
-
-<!-- ========== INTERACTIVE DEMO MODE ========== -->
-<section class="section section-gray" id="interactive-demo">
-<div class="container">
-<div class="section-header fade-up">
-<span class="section-label">Interactive Demo</span>
-<h2>Experience the Workflow</h2>
-<p>Click the button below to simulate how a file travels from your customer's phone to your print counter.</p>
-</div>
-<div class="sim-demo fade-up" id="simDemo">
-<div class="sim-steps">
-<div class="sim-step" id="sim-1">
-<div class="sim-step-icon" style="background:rgba(26,86,219,.2);color:#60a5fa">
-<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
-</div>
-<div style="flex:1">
-<h4>Customer Scans QR Code</h4>
-<p>Phone camera opens the upload page instantly</p>
-<div class="sim-progress"><div class="sim-progress-bar"></div></div>
-</div>
-</div>
-<div class="sim-step" id="sim-2">
-<div class="sim-step-icon" style="background:rgba(6,182,212,.2);color:#22d3ee">
-<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
-</div>
-<div style="flex:1">
-<h4>File Uploading via Local Wi-Fi</h4>
-<p>Secure transfer with zero internet usage</p>
-<div class="sim-progress"><div class="sim-progress-bar"></div></div>
-</div>
-</div>
-<div class="sim-step" id="sim-3">
-<div class="sim-step-icon" style="background:rgba(22,163,74,.2);color:#4ade80">
-<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg>
-</div>
-<div style="flex:1">
-<h4>Security Verification</h4>
-<p>Antivirus scan, extension validation, CSPRNG token check</p>
-<div class="sim-progress"><div class="sim-progress-bar"></div></div>
-</div>
-</div>
-<div class="sim-step" id="sim-4">
-<div class="sim-step-icon" style="background:rgba(26,86,219,.2);color:#60a5fa">
-<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 12H2"/><path d="M5.45 5.11L2 12v6a2 2 0 002 2h16a2 2 0 002-2v-6l-3.45-6.89A2 2 0 0016.76 4H7.24a2 2 0 00-1.79 1.11z"/></svg>
-</div>
-<div style="flex:1">
-<h4>File Received on Dashboard</h4>
-<p>Appears in Live Upload Stream with full details</p>
-<div class="sim-progress"><div class="sim-progress-bar"></div></div>
-</div>
-</div>
-<div class="sim-step" id="sim-5">
-<div class="sim-step-icon" style="background:rgba(22,163,74,.2);color:#4ade80">
-<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 01-2-2v-5a2 2 0 012-2h16a2 2 0 012 2v5a2 2 0 01-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
-</div>
-<div style="flex:1">
-<h4>Ready to Print</h4>
-<p>Open the file and print it — done in seconds</p>
-<div class="sim-progress"><div class="sim-progress-bar"></div></div>
-</div>
-</div>
-</div>
-<div class="sim-controls">
-<button class="sim-btn" id="simBtn" onclick="startSimulation()">Start Simulation</button>
-</div>
 </div>
 </div>
 </section>
 
 <!-- ========== FEATURES GRID ========== -->
-<section class="section" id="features">
+<section class="section cv-auto" id="features">
 <div class="container">
 <div class="section-header fade-up">
-<span class="section-label">Features</span>
-<h2>Everything Your Print Shop Needs</h2>
-<p>MR Print Hub is built specifically for cyber cafes, Xerox shops, and printing centers. Every feature solves a real problem you face daily.</p>
+<span class="section-label">Engineered for Print Shops</span>
+<h2>Complete Feature Set</h2>
+<p>MR Print Hub delivers every tool needed to handle high customer document volume quickly, safely, and professionally.</p>
 </div>
+
 <div class="features-grid">
 <div class="feature-card fade-up">
-<div class="feature-card-icon" style="background:linear-gradient(135deg,rgba(26,86,219,.1),rgba(26,86,219,.05));color:var(--primary)">
+<div class="feature-card-icon" style="background:var(--wifi-bg);color:var(--wifi-color)">
+<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12.55a11 11 0 0114.08 0"/><path d="M1.42 9a16 16 0 0121.16 0"/><line x1="12" y1="20" x2="12.01" y2="20"/></svg>
+</div>
+<h3>Local Wi-Fi File Transfer</h3>
+<p>Transfer files directly over your local Wi-Fi network with zero internet dependency and maximum LAN speed.</p>
+</div>
+
+<div class="feature-card fade-up">
+<div class="feature-card-icon" style="background:var(--data-bg);color:var(--data-color)">
+<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg>
+</div>
+<h3>Mobile Internet Transfer</h3>
+<p>Customers can upload using cellular 4G/5G data without needing to connect to your shop Wi-Fi network.</p>
+</div>
+
+<div class="feature-card fade-up">
+<div class="feature-card-icon" style="background:rgba(26,86,219,.1);color:var(--primary)">
 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
 </div>
-<h3>QR-Based File Submission</h3>
-<p>Generate a live QR code that customers scan with any phone camera. The code links directly to your local upload page — no app store, no sign-up, no friction. Print the QR as a ticket or display it on screen.</p>
+<h3>QR Code File Sending</h3>
+<p>Dynamic live QR codes generated on screen or printed as counter tickets for fast smartphone scanning.</p>
 </div>
+
 <div class="feature-card fade-up">
-<div class="feature-card-icon" style="background:linear-gradient(135deg,rgba(6,182,212,.1),rgba(6,182,212,.05));color:var(--accent)">
+<div class="feature-card-icon" style="background:rgba(16,185,129,.1);color:var(--success)">
+<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>
+</div>
+<h3>No Mobile App Required</h3>
+<p>Clean browser-based upload interface that opens immediately on iPhone and Android devices.</p>
+</div>
+
+<div class="feature-card fade-up">
+<div class="feature-card-icon" style="background:rgba(26,86,219,.1);color:var(--primary)">
+<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8"/><path d="M12 17v4"/></svg>
+</div>
+<h3>Windows Integration</h3>
+<p>Engineered natively for Windows 10 and 11 (x64) with background service support and low resource usage.</p>
+</div>
+
+<div class="feature-card fade-up">
+<div class="feature-card-icon" style="background:rgba(6,182,212,.1);color:var(--accent)">
 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
 </div>
-<h3>Easy File Upload</h3>
-<p>Customers see a clean, mobile-friendly upload page at mrprinthub.local/quickupload. Supports PDF, images, and DOCX files. Progress indicators show upload status. One tap on "Send to Print Counter" to deliver.</p>
+<h3>Live Upload Stream</h3>
+<p>Incoming files appear in real-time with customer tokens (#CUST) and instant verification status bars.</p>
 </div>
+
 <div class="feature-card fade-up">
-<div class="feature-card-icon" style="background:linear-gradient(135deg,rgba(26,86,219,.1),rgba(26,86,219,.05));color:var(--primary)">
-<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
-</div>
-<h3>Desktop File Receiving</h3>
-<p>Your Windows desktop shows a Live Upload Stream panel — files appear in real time with verification status bars. The sidebar navigation gives you quick access to Dashboard, Upload History, Storage Manager, Settings, and System Logs.</p>
-</div>
-<div class="feature-card fade-up">
-<div class="feature-card-icon" style="background:linear-gradient(135deg,rgba(22,163,74,.1),rgba(22,163,74,.05));color:var(--success)">
-<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 01-2-2v-5a2 2 0 012-2h16a2 2 0 012 2v5a2 2 0 01-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
-</div>
-<h3>Printing Workflow</h3>
-<p>Files arrive verified and organized. Open them directly from the dashboard and send to your printer. No more digging through downloads folders, email attachments, or WhatsApp conversations.</p>
-</div>
-<div class="feature-card fade-up">
-<div class="feature-card-icon" style="background:linear-gradient(135deg,rgba(6,182,212,.1),rgba(6,182,212,.05));color:var(--accent)">
-<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 01-3.46 0"/></svg>
-</div>
-<h3>Instant Notifications</h3>
-<p>Get real-time alerts when new files arrive. The Live Upload Stream updates automatically so you never miss a customer submission. Session expiry tracking keeps your queue clean and organized.</p>
-</div>
-<div class="feature-card fade-up">
-<div class="feature-card-icon" style="background:linear-gradient(135deg,rgba(22,163,74,.1),rgba(22,163,74,.05));color:var(--success)">
+<div class="feature-card-icon" style="background:rgba(245,158,11,.1);color:#d97706">
 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
 </div>
 <h3>Secure File Handling</h3>
-<p>Every file goes through a background service pipeline: antivirus checking, extension validation, and CSPRNG token security. Files are stored locally at ProgramData/MRPrintHub/Uploads — nothing ever touches the internet.</p>
+<p>Files pass extension validation and antivirus checks before saving to ProgramData/MRPrintHub/Uploads.</p>
 </div>
+
 <div class="feature-card fade-up">
-<div class="feature-card-icon" style="background:linear-gradient(135deg,rgba(26,86,219,.1),rgba(26,86,219,.05));color:var(--primary)">
-<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8"/><path d="M12 17v4"/><path d="M7 7h2v2H7z"/><path d="M7 11h6"/></svg>
+<div class="feature-card-icon" style="background:rgba(16,185,129,.1);color:var(--success)">
+<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 01-2-2v-5a2 2 0 012-2h16a2 2 0 012 2v5a2 2 0 01-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
 </div>
-<h3>Windows Integration</h3>
-<p>Built natively for Windows 10 and 11. Runs as a background service with minimal resource usage. Integrates with your existing printer setup. Works with any Wi-Fi router — no special hardware required.</p>
+<h3>Print-Ready Workflow</h3>
+<p>One-click folder access or direct print command to standard USB, LAN, or wireless shop printers.</p>
 </div>
-</div>
-</div>
-</section>
-
-<!-- ========== SOFTWARE PREVIEW ========== -->
-<section class="section section-gray">
-<div class="container">
-<div class="section-header fade-up">
-<span class="section-label">Software Preview</span>
-<h2>Everything You Need. Right on Your Desktop.</h2>
-<p>A clean, professional interface designed for busy print shop operators. Every tool you need is one click away.</p>
-</div>
-<div class="preview-grid fade-up">
-<img src="Desktop Ui.png" alt="MR Print Hub full desktop interface with Dashboard, Live Upload Stream, and Customer Access panel" class="preview-img" loading="lazy">
-<img src="illustration.png" alt="MR Print Hub concept illustration" loading="lazy" style="border-radius:var(--radius);box-shadow:var(--shadow)">
 </div>
 </div>
 </section>
 
-<!-- ========== USE CASES ========== -->
-<section class="section">
+<!-- ========== PROFESSIONAL TRUST / USE CASES ========== -->
+<section class="section section-gray cv-auto">
 <div class="container">
 <div class="section-header fade-up">
-<span class="section-label">Use Cases</span>
-<h2>Built for Every Printing Business</h2>
-<p>Whether you run a corner cyber cafe or a full-service printing center, MR Print Hub fits your workflow.</p>
+<span class="section-label">Targeted Solutions</span>
+<h2>Built for Modern Printing Businesses</h2>
+<p>MR Print Hub simplifies how customers send documents to printing shops while keeping the workflow simple for the operator.</p>
 </div>
+
 <div class="use-grid">
 <div class="use-card fade-up">
 <div class="use-card-icon">&#128424;</div>
-<h3>Cyber Cafe</h3>
-<p>Let walk-in customers upload and print documents without needing to use your shop computers. Reduce wait times and keep your systems clean from USB drives.</p>
+<h3>Cyber Cafes</h3>
+<p>Let walk-in customers submit print files from their own phones without logging onto shared computers.</p>
 </div>
+
 <div class="use-card fade-up">
 <div class="use-card-icon">&#128196;</div>
-<h3>Xerox Shop</h3>
-<p>Handle high volumes of copy and print jobs faster. Customers send files while waiting — by the time they reach the counter, their documents are ready.</p>
+<h3>Xerox &amp; Copy Shops</h3>
+<p>Clear counter queues quickly. Customers upload files while in line, ready for printing when their turn arrives.</p>
 </div>
+
 <div class="use-card fade-up">
-<div class="use-card-icon">&#128424;</div>
-<h3>Printing Center</h3>
-<p>Professional printing shops can manage multiple customer files simultaneously. Full upload history and storage management keep your operation organized.</p>
+<div class="use-card-icon">&#128421;</div>
+<h3>Commercial Print Shops</h3>
+<p>Manage large batches of customer files with upload history, tokenized tracking, and storage management.</p>
 </div>
+
 <div class="use-card fade-up">
 <div class="use-card-icon">&#127970;</div>
-<h3>Online Service Center</h3>
-<p>Shops offering document services like form filing, scanning, and printing can accept customer files seamlessly. No more asking customers to email or WhatsApp files.</p>
+<h3>CSC &amp; Service Centers</h3>
+<p>Receive official forms, application PDFs, and ID scans without messy WhatsApp chats or email chains.</p>
 </div>
 </div>
 </div>
 </section>
 
-<!-- ========== COMPARISON TABLE ========== -->
-<section class="section section-gray">
+<!-- ========== COMPARISON MATRIX ========== -->
+<section class="section cv-auto">
 <div class="container">
 <div class="section-header fade-up">
-<span class="section-label">Why MR Print Hub</span>
-<h2>Traditional Methods vs MR Print Hub</h2>
-<p>See exactly how MR Print Hub upgrades every part of your file-receiving workflow.</p>
+<span class="section-label">Comparison</span>
+<h2>Traditional File Collection vs MR Print Hub</h2>
+<p>See why modern printing centers are upgrading their file intake system.</p>
 </div>
+
 <div class="comparison-table fade-up">
 <div class="comp-header">
-<div>Workflow Step</div>
-<div>Traditional</div>
+<div>Capability</div>
+<div>Traditional (WhatsApp / USB)</div>
 <div>MR Print Hub</div>
 </div>
 <div class="comp-row">
-<div>File Receiving</div>
-<div class="comp-old">&#10007; WhatsApp, Email, USB</div>
-<div class="comp-new">&#10003; QR Code Scan</div>
+<div>Local Wi-Fi Transfer</div>
+<div class="comp-old">&#10007; Not supported</div>
+<div class="comp-new">&#10003; Yes (Zero internet needed)</div>
 </div>
 <div class="comp-row">
-<div>Internet Required</div>
-<div class="comp-old">&#10007; Yes, always</div>
-<div class="comp-new">&#10003; No, local Wi-Fi only</div>
-</div>
-<div class="comp-row">
-<div>Security</div>
-<div class="comp-old">&#10007; USB malware risk</div>
-<div class="comp-new">&#10003; Antivirus + token security</div>
-</div>
-<div class="comp-row">
-<div>Customer Experience</div>
-<div class="comp-old">&#10007; Wait in line, share phone</div>
-<div class="comp-new">&#10003; Scan, upload, done</div>
-</div>
-<div class="comp-row">
-<div>File Organization</div>
-<div class="comp-old">&#10007; Scattered across apps</div>
-<div class="comp-new">&#10003; Centralized dashboard</div>
+<div>Mobile Internet Mode</div>
+<div class="comp-old">&#10007; WhatsApp only (compressed)</div>
+<div class="comp-new">&#10003; Yes (Full original resolution)</div>
 </div>
 <div class="comp-row">
 <div>App Installation</div>
-<div class="comp-old">&#10007; Multiple apps needed</div>
-<div class="comp-new">&#10003; Zero apps for customers</div>
+<div class="comp-old">&#10007; WhatsApp / Bluetooth apps</div>
+<div class="comp-new">&#10003; Zero apps required</div>
+</div>
+<div class="comp-row">
+<div>Security &amp; Malware</div>
+<div class="comp-old">&#10007; High USB virus risk</div>
+<div class="comp-new">&#10003; Token security &amp; local buffer</div>
+</div>
+<div class="comp-row">
+<div>Customer Queue</div>
+<div class="comp-old">&#10007; One-by-one manual transfer</div>
+<div class="comp-new">&#10003; Simultaneous multi-user upload</div>
+</div>
+<div class="comp-row">
+<div>Privacy &amp; Contacts</div>
+<div class="comp-old">&#10007; Personal phone numbers saved</div>
+<div class="comp-new">&#10003; 100% anonymous &amp; confidential</div>
 </div>
 </div>
 </div>
 </section>
 
-<!-- ========== SECURITY ========== -->
-<section class="section section-dark">
+<!-- ========== SECURITY SECTION ========== -->
+<section class="section section-dark cv-auto">
 <div class="container">
 <div class="section-header fade-up">
-<span class="section-label">Security</span>
+<span class="section-label">Enterprise-Grade Security</span>
 <h2>Your Customers' Documents Deserve Better.</h2>
-<p>MR Print Hub was built with security at its core. Every file that enters your system goes through multiple layers of protection — and nothing ever leaves your local network.</p>
+<p>Security is built into every layer of MR Print Hub to ensure customer documents stay safe and private.</p>
 </div>
+
 <div class="security-grid">
 <div class="sec-card fade-up">
 <div class="sec-card-icon">&#128274;</div>
-<h4>Local Wi-Fi Transfer</h4>
-<p>All files transfer over your local Wi-Fi network. Zero data goes through the internet. Your customers' documents stay completely private within your shop's network.</p>
+<h4>Direct Local Wi-Fi</h4>
+<p>Files stay entirely inside your local network when using Wi-Fi mode. No external servers involved.</p>
 </div>
 <div class="sec-card fade-up">
 <div class="sec-card-icon">&#128273;</div>
-<h4>CSPRNG Token Security</h4>
-<p>Every upload session is protected by cryptographically secure random tokens. Each QR code generates a unique, time-limited session that cannot be guessed or reused.</p>
+<h4>CSPRNG Session Tokens</h4>
+<p>Cryptographically secure pseudo-random tokens ensure each upload session is unique and tamper-proof.</p>
 </div>
 <div class="sec-card fade-up">
 <div class="sec-card-icon">&#128737;</div>
-<h4>Firewall Protection</h4>
-<p>Built-in firewall rules ensure only authorized devices on your local network can connect. External access attempts are automatically blocked.</p>
+<h4>Firewall &amp; Port Protection</h4>
+<p>Configured for strict local LAN port communication without exposing unnecessary system services.</p>
 </div>
 <div class="sec-card fade-up">
-<div class="sec-card-icon">&#128190;</div>
-<h4>Local Storage</h4>
-<p>All received files are stored locally at ProgramData/MRPrintHub/Uploads on your Windows PC. No cloud storage, no third-party servers, no data leaving your machine.</p>
+<div class="sec-card-icon">&#128193;</div>
+<h4>Local File Isolation</h4>
+<p>Files are stored in ProgramData/MRPrintHub/Uploads on your PC under your direct administrative control.</p>
 </div>
 <div class="sec-card fade-up">
-<div class="sec-card-icon">&#128737;</div>
-<h4>Antivirus &amp; Extension Check</h4>
-<p>Every uploaded file passes through automated antivirus scanning and extension validation before it reaches your dashboard. Malicious files are caught and quarantined.</p>
+<div class="sec-card-icon">&#128269;</div>
+<h4>Extension &amp; Antivirus Checks</h4>
+<p>Incoming files pass through validation filters to protect your computer from unauthorized file extensions.</p>
 </div>
 <div class="sec-card fade-up">
-<div class="sec-card-icon">&#9889;</div>
-<h4>No Third-Party Dependency</h4>
-<p>MR Print Hub runs entirely on your own hardware. No external APIs, no SaaS subscriptions, no vendor lock-in. You own and control everything.</p>
+<div class="sec-card-icon">&#128683;</div>
+<h4>Zero Social Media Tracking</h4>
+<p>Eliminate WhatsApp sharing and protect customer numbers from public chat leakage.</p>
 </div>
 </div>
 </div>
 </section>
 
-<!-- ========== DOWNLOAD ========== -->
-<section class="section" id="download">
+<!-- ========== DOWNLOAD SECTION ========== -->
+<section class="section cv-auto" id="download">
 <div class="container">
 <div class="section-header fade-up">
-<span class="section-label">Download</span>
-<h2>Ready to Upgrade Your Printing Workflow?</h2>
-<p>Download MR Print Hub for free and start accepting files from customers in minutes.</p>
+<span class="section-label">Get Started Today</span>
+<h2>Ready to simplify file collection at your shop?</h2>
+<p>Give your customers a faster, simpler way to send files for printing. Download MR Print Hub for Windows today.</p>
 </div>
+
 <div class="dl-box fade-up">
-<a href="https://github.com/Mafidul-Islam/MrPrintHub/releases/download/1.1.0/MRPrintHub-Setup.exe" class="btn-primary" style="font-size:1.1rem;padding:18px 40px">
+<a href="https://github.com/Mafidul-Islam/MrPrintHub/releases/download/v1.0.0/MRPrintHub-Setup.exe" class="btn-primary" style="font-size:1.08rem;padding:18px 38px">
 <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-Download for Windows
+Download MR Print Hub
 </a>
+
 <div class="dl-meta">
 <span>
-<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.59 13.41l-7.17 7.17a2 2 0 01-2.83 0L2 12V2h10l8.59 8.59a2 2 0 010 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg>
-v1.0.0
+<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.59 13.41l-7.17 7.17a2 2 0 01-2.83 0L2 12V2h10l8.59 8.59a2 2 0 010 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg>
+Version 1.0.0
 </span>
 <span>
-<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8"/><path d="M12 17v4"/></svg>
-Windows 10 / 11
+<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8"/><path d="M12 17v4"/></svg>
+Windows 10 / 11 (64-bit)
 </span>
 <span>
-<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-~50 MB Installer
+<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+~50 MB Setup Package
 </span>
 </div>
 </div>
@@ -816,153 +1019,144 @@ Windows 10 / 11
 </section>
 
 <!-- ========== INSTALLATION GUIDE ========== -->
-<section class="section section-gray">
+<section class="section section-gray cv-auto">
 <div class="container">
 <div class="section-header fade-up">
-<span class="section-label">Installation</span>
-<h2>Up and Running in Three Steps</h2>
-<p>No complex configuration. No technical expertise needed. Just download, install, and start.</p>
+<span class="section-label">Quick Setup</span>
+<h2>Install in 3 Simple Steps</h2>
+<p>Get MR Print Hub up and running on your Windows computer in less than two minutes.</p>
 </div>
+
 <div class="install-grid">
 <div class="install-card fade-up">
 <div class="inst-num">1</div>
-<h4>Download</h4>
-<p>Click the download button above to get the MR Print Hub installer. The file is approximately 50 MB and downloads directly to your computer.</p>
+<h4>Download Installer</h4>
+<p>Click the download button above to get the official MR Print Hub setup package (.exe) for Windows.</p>
 </div>
 <div class="install-card fade-up">
 <div class="inst-num">2</div>
-<h4>Install</h4>
-<p>Run the installer and follow the on-screen instructions. The setup takes under a minute. MR Print Hub will install and configure itself automatically.</p>
+<h4>Run Setup Wizard</h4>
+<p>Double-click the installer and follow the guided setup. Installation takes under a minute.</p>
 </div>
 <div class="install-card fade-up">
 <div class="inst-num">3</div>
-<h4>Start</h4>
-<p>Launch MR Print Hub from your desktop. A QR code is generated automatically. Display it on your counter and start accepting files from customers right away.</p>
+<h4>Start Receiving Files</h4>
+<p>Launch MR Print Hub, print your counter QR code ticket, and accept files over Wi-Fi or mobile data.</p>
 </div>
 </div>
 </div>
 </section>
 
 <!-- ========== SYSTEM REQUIREMENTS ========== -->
-<section class="section">
+<section class="section cv-auto">
 <div class="container">
 <div class="section-header fade-up">
-<span class="section-label">System Requirements</span>
-<h2>What You Need to Get Started</h2>
-<p>MR Print Hub runs on standard Windows hardware. If your computer can run Windows 10, it can run MR Print Hub.</p>
+<span class="section-label">Specifications</span>
+<h2>System Requirements</h2>
+<p>MR Print Hub is lightweight and optimized for standard printing center hardware.</p>
 </div>
+
 <div class="req-list fade-up">
 <div class="req-item">
 <span class="req-icon">&#128187;</span>
-<span>Windows 10 or Windows 11 (x64 architecture)</span>
+<span><strong>Operating System:</strong> Windows 10 or Windows 11 (64-bit / x64)</span>
 </div>
 <div class="req-item">
-<span class="req-icon">&#128268;</span>
-<span>4 GB RAM minimum</span>
+<span class="req-icon">&#9881;</span>
+<span><strong>Processor:</strong> 1.6 GHz or faster 64-bit processor</span>
 </div>
 <div class="req-item">
-<span class="req-icon">&#128246;</span>
-<span>Local Wi-Fi network or router</span>
-</div>
-<div class="req-item">
-<span class="req-icon">&#128424;</span>
-<span>Compatible printer (any Windows-supported printer)</span>
+<span class="req-icon">&#128421;</span>
+<span><strong>RAM:</strong> 4 GB minimum (8 GB recommended for heavy loads)</span>
 </div>
 <div class="req-item">
 <span class="req-icon">&#128190;</span>
-<span>50 MB free disk space for installation</span>
+<span><strong>Storage:</strong> 200 MB free disk space for application files</span>
+</div>
+<div class="req-item">
+<span class="req-icon">&#128246;</span>
+<span><strong>Network:</strong> Local Wi-Fi router / LAN connection (internet required for mobile data mode)</span>
+</div>
+<div class="req-item">
+<span class="req-icon">&#128424;</span>
+<span><strong>Printer:</strong> Compatible with all standard Windows printers (USB, Network, Wi-Fi)</span>
 </div>
 </div>
 </div>
 </section>
 
-<!-- ========== FAQ ========== -->
-<section class="section section-gray" id="faq">
+<!-- ========== FAQ ACCORDION ========== -->
+<section class="section section-gray cv-auto" id="faq">
 <div class="container">
 <div class="section-header fade-up">
-<span class="section-label">FAQ</span>
-<h2>Frequently Asked Questions</h2>
-<p>Everything you need to know about MR Print Hub before downloading.</p>
+<span class="section-label">Frequently Asked Questions</span>
+<h2>Got Questions? We Have Answers.</h2>
+<p>Learn more about MR Print Hub's transfer modes, security, and printer support.</p>
 </div>
+
 <div class="faq-list">
 <div class="faq-item fade-up">
 <div class="faq-q" onclick="toggleFaq(this)">
-<span>Does MR Print Hub require an internet connection?</span>
+<span>How do the two transfer modes work (Local Wi-Fi vs Mobile Internet)?</span>
 <span class="arrow">&#9662;</span>
 </div>
-<div class="faq-a"><div class="faq-a-inner">No. MR Print Hub works entirely over your local Wi-Fi network. Files transfer directly between your customer's phone and your Windows PC using your shop's Wi-Fi router. No internet connection is needed at any point. This also means file transfers are faster since they use LAN speed instead of internet bandwidth.</div></div>
+<div class="faq-a"><div class="faq-a-inner">MR Print Hub supports two flexible transfer methods: (1) <strong>Local Wi-Fi</strong> transfers files directly over your shop's local network at maximum LAN speed without using internet data. (2) <strong>Mobile Internet</strong> allows customers who aren't connected to your shop Wi-Fi to upload documents using their own cellular data (4G/5G). Both modes deliver files directly to your MR Print Hub dashboard.</div></div>
 </div>
+
 <div class="faq-item fade-up">
 <div class="faq-q" onclick="toggleFaq(this)">
-<span>Do customers need to install an app on their phone?</span>
+<span>Does the customer need to install any mobile app?</span>
 <span class="arrow">&#9662;</span>
 </div>
-<div class="faq-a"><div class="faq-a-inner">No. Customers simply scan the QR code displayed at your shop counter using their phone's built-in camera. This opens a browser-based upload page at mrprinthub.local/quickupload. They can select and upload files directly from their phone browser — no app download, no account creation, no sign-up required.</div></div>
+<div class="faq-a"><div class="faq-a-inner">No. Customers simply scan your shop's QR code using their smartphone's native camera. The QR code opens a lightweight browser-based upload page. They select their documents and hit Send — no App Store downloads or accounts needed.</div></div>
 </div>
+
 <div class="faq-item fade-up">
 <div class="faq-q" onclick="toggleFaq(this)">
-<span>What file types can customers upload?</span>
+<span>What file formats are supported?</span>
 <span class="arrow">&#9662;</span>
 </div>
-<div class="faq-a"><div class="faq-a-inner">MR Print Hub supports PDF documents, image files (JPG, PNG, and other common formats), and DOCX (Microsoft Word) files. All uploaded files go through extension validation to ensure only supported file types are accepted by the system.</div></div>
+<div class="faq-a"><div class="faq-a-inner">MR Print Hub supports standard document and image formats including PDF, Microsoft Word (.docx), and high-resolution images (JPG, PNG). Files are transferred in their original uncompressed resolution.</div></div>
 </div>
+
 <div class="faq-item fade-up">
 <div class="faq-q" onclick="toggleFaq(this)">
-<span>How are the files secured?</span>
+<span>Can multiple customers send files at the same time?</span>
 <span class="arrow">&#9662;</span>
 </div>
-<div class="faq-a"><div class="faq-a-inner">MR Print Hub uses multiple layers of security. Every upload session is protected by CSPRNG (Cryptographically Secure Pseudo-Random Number Generator) tokens, so each QR code generates a unique session that cannot be guessed. Files go through a background service pipeline that includes antivirus scanning and extension validation. Built-in firewall protection prevents unauthorized access. All files are stored locally on your PC at ProgramData/MRPrintHub/Uploads and never leave your network.</div></div>
+<div class="faq-a"><div class="faq-a-inner">Yes! Multiple walk-in customers can scan the QR code and submit documents simultaneously. Each customer is assigned a unique session identifier (#CUST token) that appears in your Live Upload Stream.</div></div>
 </div>
+
 <div class="faq-item fade-up">
 <div class="faq-q" onclick="toggleFaq(this)">
-<span>Where are the uploaded files stored?</span>
+<span>Can I use my existing printers?</span>
 <span class="arrow">&#9662;</span>
 </div>
-<div class="faq-a"><div class="faq-a-inner">All files are stored locally on your Windows PC at ProgramData/MRPrintHub/Uploads. You can manage your storage through the built-in Storage Manager accessible from the sidebar navigation. No files are ever sent to cloud storage or external servers.</div></div>
+<div class="faq-a"><div class="faq-a-inner">Yes. MR Print Hub integrates directly with Windows printing services and works seamlessly with all existing USB, Network, and Wireless printers configured on your computer.</div></div>
 </div>
+
 <div class="faq-item fade-up">
 <div class="faq-q" onclick="toggleFaq(this)">
-<span>Can multiple customers upload files at the same time?</span>
+<span>Is MR Print Hub free to download?</span>
 <span class="arrow">&#9662;</span>
 </div>
-<div class="faq-a"><div class="faq-a-inner">Yes. MR Print Hub handles multiple simultaneous uploads. Each customer gets their own secure session with a unique CSPRNG token. Files from different customers appear in your Live Upload Stream in real time, each with its own verification status bar so you can track every submission individually.</div></div>
-</div>
-<div class="faq-item fade-up">
-<div class="faq-q" onclick="toggleFaq(this)">
-<span>What operating systems does MR Print Hub support?</span>
-<span class="arrow">&#9662;</span>
-</div>
-<div class="faq-a"><div class="faq-a-inner">MR Print Hub is a Windows desktop application that runs on Windows 10 and Windows 11 (x64 architecture). It requires 4 GB of RAM and a local Wi-Fi network. The customer-facing upload page works on any phone with a modern web browser — both Android and iOS are supported since it is browser-based.</div></div>
-</div>
-<div class="faq-item fade-up">
-<div class="faq-q" onclick="toggleFaq(this)">
-<span>How does the QR code system work?</span>
-<span class="arrow">&#9662;</span>
-</div>
-<div class="faq-a"><div class="faq-a-inner">MR Print Hub generates a Live QR code that encodes your shop computer's LAN IP address and a secure session token. You can display this QR code on your screen or print it as a QR ticket using the "Print QR Ticket" button. When a customer scans it, their phone connects to your local Wi-Fi network and opens the upload page. Each session has an expiry timer for added security.</div></div>
-</div>
-<div class="faq-item fade-up">
-<div class="faq-q" onclick="toggleFaq(this)">
-<span>Is MR Print Hub free to use?</span>
-<span class="arrow">&#9662;</span>
-</div>
-<div class="faq-a"><div class="faq-a-inner">Yes. MR Print Hub v1.0.0 is available as a free download. There are no subscription fees, no usage limits, and no hidden costs. The software runs entirely on your own hardware with no external dependencies or SaaS requirements.</div></div>
+<div class="faq-a"><div class="faq-a-inner">Yes, MR Print Hub v1.0.0 is free to download and use on your Windows computer with no hidden subscription fees.</div></div>
 </div>
 </div>
 </div>
 </section>
 
 <!-- ========== FINAL CTA ========== -->
-<section class="final-cta">
+<section class="final-cta cv-auto">
 <div class="container">
-<h2 class="fade-up">Your Next Customer Is Already Holding Their File.</h2>
-<p class="fade-up">Give them the fastest way to get it printed. Download MR Print Hub and modernize your printing workflow today.</p>
+<h2 class="fade-up">Ready to simplify file collection at your shop?</h2>
+<p class="fade-up">Give your customers a faster, simpler way to send files for printing. Download MR Print Hub for Windows today.</p>
 <div class="final-cta-buttons fade-up">
-<a href="https://github.com/Mafidul-Islam/MrPrintHub/releases/download/1.1.0/MRPrintHub-Setup.exe" class="btn-primary">
+<a href="https://github.com/Mafidul-Islam/MrPrintHub/releases/download/v1.0.0/MRPrintHub-Setup.exe" class="btn-primary">
 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-Download for Windows
+Download MR Print Hub
 </a>
-<a href="#demo" class="btn-secondary" style="border-color:rgba(255,255,255,.2);color:#fff">
+<a href="#demo" class="btn-secondary" style="border-color:rgba(255,255,255,.25);color:#fff">
 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"/></svg>
 Watch Demo
 </a>
@@ -971,17 +1165,19 @@ Watch Demo
 </section>
 
 <!-- ========== FOOTER ========== -->
-<footer class="footer">
+<footer class="footer cv-auto">
 <div class="container">
 <div class="footer-inner">
 <div class="footer-brand">
-<img src="logo.png" onerror="this.src='https://i.postimg.cc/YCFyR8d8/Gemini-Generated-Image-ipd9ndipd9ndipd9.png'" alt="MR Print Hub" width="32" height="32">
+<img src="logo-72.webp" onerror="this.src='https://i.postimg.cc/YCFyR8d8/Gemini-Generated-Image-ipd9ndipd9ndipd9.png'" alt="MR Print Hub" width="32" height="32" loading="lazy">
 <span>MR Print Hub</span>
 </div>
 <div class="footer-links">
 <a href="#home">Home</a>
-<a href="#features">Features</a>
+<a href="#dual-transfer">Dual Transfer</a>
 <a href="#how-it-works">How It Works</a>
+<a href="#no-app">No App</a>
+<a href="#features">Features</a>
 <a href="#demo">Demo</a>
 <a href="#download">Download</a>
 <a href="#faq">FAQ</a>
@@ -989,7 +1185,7 @@ Watch Demo
 </div>
 <div class="footer-copy">
 <p>&copy; 2026 MR Print Hub. All rights reserved. Located near Sukchar Bridge 783128.</p>
-<p style="margin-top:6px">Contact MR Print Hub for support inquiries.</p>
+<p style="margin-top:6px">Support: Contact MR Print Hub for setup assistance.</p>
 </div>
 </div>
 </footer>
@@ -1000,7 +1196,7 @@ Watch Demo
 const DOWNLOAD_CONFIG = {
   version: "1.0.0",
   releaseDate: "2026",
-  downloadUrl: "https://github.com/Mafidul-Islam/MrPrintHub/releases/download/1.1.0/MRPrintHub-Setup.exe",
+  downloadUrl: "https://github.com/Mafidul-Islam/MrPrintHub/releases/download/v1.0.0/MRPrintHub-Setup.exe",
   logoUrl: "https://i.postimg.cc/YCFyR8d8/Gemini-Generated-Image-ipd9ndipd9ndipd9.png",
   fileSize: "~50 MB",
   supportedOS: "Windows 10 / 11 (x64)"
@@ -1041,8 +1237,8 @@ function toggleFaq(el) {
 // Scroll Animations (IntersectionObserver)
 const observerOptions = {
   root: null,
-  rootMargin: '0px',
-  threshold: 0.1
+  rootMargin: '50px 0px',
+  threshold: 0.05
 };
 
 const observer = new IntersectionObserver((entries, obs) => {
@@ -1054,49 +1250,67 @@ const observer = new IntersectionObserver((entries, obs) => {
   });
 }, observerOptions);
 
-document.querySelectorAll('.fade-up').forEach(el => {
+document.querySelectorAll('.fade-up:not(.visible)').forEach(el => {
   observer.observe(el);
 });
 
-// Interactive Demo Simulation
-let isSimulating = false;
-function startSimulation() {
-  if (isSimulating) return;
-  isSimulating = true;
-  const btn = document.getElementById('simBtn');
-  btn.textContent = 'Simulating Workflow...';
-  btn.style.opacity = '0.7';
+// Interactive Dual-Mode Simulation
+let currentSimMode = 'wifi'; // 'wifi' or 'data'
+let isSimRunning = false;
 
-  const steps = [
-    document.getElementById('sim-1'),
-    document.getElementById('sim-2'),
-    document.getElementById('sim-3'),
-    document.getElementById('sim-4'),
-    document.getElementById('sim-5')
-  ];
+function toggleSimMode() {
+  if (isSimRunning) return;
+  currentSimMode = currentSimMode === 'wifi' ? 'data' : 'wifi';
+  const badge = document.getElementById('simModeBadge');
+  const btn = document.getElementById('simRunBtn');
 
-  // Reset all
-  steps.forEach(s => s.classList.remove('active'));
-
-  let current = 0;
-  function runStep() {
-    if (current < steps.length) {
-      if (current > 0) {
-        steps[current - 1].classList.remove('active');
-      }
-      steps[current].classList.add('active');
-      current++;
-      setTimeout(runStep, 1400);
-    } else {
-      // Completed all
-      steps.forEach(s => s.classList.add('active'));
-      btn.textContent = 'Restart Simulation';
-      btn.style.opacity = '1';
-      isSimulating = false;
-    }
+  if (currentSimMode === 'wifi') {
+    badge.className = 'phone-mode-tag tag-wifi';
+    badge.textContent = 'Mode: Local Wi-Fi';
+    btn.textContent = 'Simulate Local Wi-Fi Transfer';
+  } else {
+    badge.className = 'phone-mode-tag tag-data';
+    badge.textContent = 'Mode: Mobile Internet';
+    btn.textContent = 'Simulate Mobile Internet Transfer';
   }
+}
 
-  runStep();
+function runDualSimulation() {
+  if (isSimRunning) return;
+  isSimRunning = true;
+
+  const btn = document.getElementById('simRunBtn');
+  const progress = document.getElementById('simPhoneProgress');
+  const status = document.getElementById('simPhoneStatus');
+  const pcItem = document.getElementById('simPcItem');
+
+  btn.disabled = true;
+  btn.style.opacity = '0.6';
+  pcItem.classList.remove('active');
+  progress.style.width = '0%';
+
+  status.textContent = currentSimMode === 'wifi'
+    ? 'Connecting via Shop Local Wi-Fi...'
+    : 'Connecting via Mobile Cellular Data...';
+
+  setTimeout(() => {
+    progress.style.width = '45%';
+    status.textContent = 'Sending document.pdf (1.8 MB)...';
+  }, 400);
+
+  setTimeout(() => {
+    progress.style.width = '100%';
+    status.textContent = 'File Sent Successfully!';
+  }, 1000);
+
+  setTimeout(() => {
+    pcItem.classList.add('active');
+    status.textContent = 'Received on PC! Ready to Print.';
+    btn.disabled = false;
+    btn.style.opacity = '1';
+    btn.textContent = 'Run Again';
+    isSimRunning = false;
+  }, 1600);
 }
 </script>
 </body>
